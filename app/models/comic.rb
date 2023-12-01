@@ -1,7 +1,5 @@
 class Comic < ApplicationRecord
-
-  #validations
-  #title
-  #description
-  #publish_date unique
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :publish_date, uniqueness: true
 end

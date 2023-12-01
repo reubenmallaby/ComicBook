@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Comic, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-
   subject {
     Comic.new(
       publish_date: DateTime.new,
@@ -22,7 +20,7 @@ RSpec.describe Comic, type: :model do
   end
 
   it "is valid with valid attributes" do
-    expect(subject).to_be valid
+    expect(subject).to be_valid
   end
 
 end

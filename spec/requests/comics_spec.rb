@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Comics", type: :request do
-  describe "GET /comics" do
-    it "works! (now write some real specs)" do
-      get comics_path
+RSpec.describe "Root", type: :request do
+  describe "GET /" do
+    it "gets the root path showing today's comic" do
+      get root_path
       expect(response).to have_http_status(200)
     end
   end
