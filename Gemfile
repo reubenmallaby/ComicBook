@@ -64,9 +64,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'rspec-rails', ">= 6.1.0"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "byebug", platforms: %i[ mri ]
   gem "factory_bot_rails"
   gem "faker"
-  
+
   gem "capybara"
   gem "selenium-webdriver"
 end
