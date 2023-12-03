@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ComicBook</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Comic Book" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Comic Book" %>">
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="page-wrapper">
+      <header class="page-header">
+        <%= render 'layouts/navigation' %>
+      </header>
+      <main role="main" class="page-main">
+        <div class="left-side"><%= content_for?(:left_side) ? yield(:left_side) : "" %></div>
+        <div class="container">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+        <div class="right-side"><%= content_for?(:right_side) ? yield(:right_side) : "" %></div>
+      </main>
+      <footer class="page-footer">
+        ComicBook - web comic manager
+      </footer>
+    </div>
   </body>
 </html>
