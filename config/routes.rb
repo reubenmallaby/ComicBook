@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get "user" => "users#index"
   get "user/:id" => "users#show"
 
+  namespace :manage do
+    root "comics#index"
+  end
+
   # Defines the root path route ("/")
   root "comics#index"
 end

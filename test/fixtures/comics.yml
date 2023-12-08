@@ -2,10 +2,18 @@
 
 one:
   publish_date: 2023-12-01 12:53:56
-  title: MyString
-  description: MyText
+  title: Test Comic One
+  description: Test Comic One Description
+  is_published: true
 
 two:
   publish_date: 2023-12-01 12:53:56
-  title: MyString
-  description: MyText
+  title: Test Comic Two
+  description: Test Comic Two Description
+  is_published: true
+
+three:
+  publish_date: 2023-12-01 12:53:56
+  title: Test Comic Three
+  description: Test Comic Three Description
+  is_published: false
