@@ -27,6 +27,6 @@ class ComicsController < ApplicationController
     @previous = Comic.previous(@date)&.publish_date || nil
     @next     = Comic.next(@date)&.publish_date     || nil
     @latest   = Comic.latest&.publish_date          || nil
-    @latest   = nil if @latest == @first
+    @latest, @first = nil, nil if @latest == @first
   end
 end
