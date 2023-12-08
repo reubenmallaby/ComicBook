@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Comic.create!(
+  title: "In the Beginning",
+  description: "Starter comic page",
+  publish_date: DateTime.new(2000,1,1),
+  is_published: true
+)

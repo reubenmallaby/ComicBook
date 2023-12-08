@@ -40,9 +40,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_222907) do
   end
 
   create_table "comics", force: :cascade do |t|
-    t.datetime "publish_date"
-    t.string "title"
-    t.text "description"
+    t.datetime "publish_date", null: false
+    t.string "title", default: "Name me", null: false
+    t.text "description", default: "Describe me", null: false
     t.boolean "is_published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
