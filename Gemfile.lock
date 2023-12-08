@@ -297,7 +297,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  byebug
   capybara
   debug
   devise (~> 4.9)

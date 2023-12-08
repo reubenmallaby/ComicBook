@@ -379,13 +379,13 @@ template {
 
   main {
     background-color: #fff;
-    padding-bottom: 80px;
     display: flex;
     flex-grow: 1;
     flex-direction: row;
     align-content: center;
     justify-items: center;
     width: 100%;
+    height: 100%;
     margin: 10px;
 
     .left-side {
@@ -393,15 +393,97 @@ template {
       flex-direction: column;
       width: 200px;
       border: 1px solid #eee;
-      border-radius: 5px;
     }
 
     .container {
       display: flex;
       flex-direction: column;
+      align-items: center;
       flex-grow: 1;
-      background-color: #aaa;
+      background-color: #eee;
       margin: 0 10px;
+      padding: 10px;
+
+
+      .comic {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        .comic_header {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;          
+          height: 40px;
+          line-height: 40px;
+          text-align: left;
+          width: 100%;
+          background-color: #FFF;
+          border-bottom: 1px solid #37F;
+          margin-bottom: 10px;
+
+          .comic_date {
+            width: 300px;
+          }
+
+          .comic_title {
+            flex: 1;
+          }
+        }
+
+        .comic_image {
+          flex-grow: 1;
+          margin: auto;
+          img {
+            max-height: 600px;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .comic_nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        line-height: 40px;
+        border-top: 1px solid #37F;
+        margin-top: 10px;
+        padding-top: 5px;
+
+        >.action {
+          padding: 0 10px;
+          height: 40px;
+          line-height: 38px;
+          display: inline-block;
+          text-decoration: none;
+          color: #000;
+          border: 1px solid transparent;
+          min-width: 200px;
+          text-align: center;
+
+          &.no_link {
+            cursor: default;
+            color: #bbf;
+          }
+          &.first::before { margin-right: "10px"; content: '\21E4  '; }
+          &.previous::before { margin-right: "10px";content: '\2190  '; }
+          &.next::after { margin-left: "10px";content: '  \2192'; }
+          &.latest::after { margin-left: "10px";content: '  \21E5'; }                  
+        }
+
+        a, a:link, a:visited, a:active {
+          cursor: pointer;
+
+          &:hover {
+            background-color: #FFF;
+            color: #00f;
+            border-color: #37F;
+          }
+        }   
+      }
     }
 
     .right-side {
@@ -409,7 +491,6 @@ template {
       flex-direction: column;
       width: 200px;
       border: 1px solid #ccc;
-      border-radius: 5px;
     }
   }
 
@@ -430,25 +511,21 @@ template {
       display: flex;
       flex-direction: row;
 
-      div {
-        display: flex;
-        flex-direction: column;
-        margin: 0 5px;
+      >a {
+        display: inline-block;
+        margin: 0 10px;
+        color: #777777;
+        text-decoration: none;
+        text-shadow: 0 1px 0 white;
+        padding: 0 15px;
 
-        .right {
-          justify-self: flex-end;
+        &:hover {
+          background-color: #ccc;
         }
 
-        a {
-          color: #777777;
-          text-decoration: none;
-          text-shadow: 0 1px 0 white;
-          padding: 0 15px;
-
-          &:hover {
-            background-color: #ccc;
-          }
-        }
+        &.right {
+          align-self: flex-end;
+        }      
       }
     }
   }
