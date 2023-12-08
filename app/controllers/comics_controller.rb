@@ -14,7 +14,12 @@ class ComicsController < ApplicationController
     year  = params[:year].to_i
     month = params[:month].to_i
     day   = params[:day].to_i
-    @date = DateTime.new year, month, day
+
+    begin
+      @date = DateTime.new year, month, day
+    rescue
+      @date = nil
+    end
    
     @comic = Comic.find_by_published_date @date
 
