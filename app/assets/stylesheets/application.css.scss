@@ -417,7 +417,7 @@ template {
           width: 100%;
           background-color: #FFF;
           border-bottom: 1px solid #37F;
-          margin-bottom: 10px;
+          margin-bottom: 0;
 
           .comic_date {
             text-align: center;
@@ -437,7 +437,8 @@ template {
 
         .comic_image {
           flex-grow: 1;
-          margin: auto;
+          margin: 10px auto;
+
           img {
             max-height: 600px;
             max-width: 100%;
@@ -453,12 +454,11 @@ template {
         height: 40px;
         line-height: 40px;
         border-top: 1px solid #37F;
-        margin-top: 10px;
 
         >.fill {
           flex: 1;
         }
-        
+
         >.action {
           padding: 0 10px;
           height: 40px;
@@ -515,6 +515,7 @@ template {
     nav {
       display: flex;
       flex-direction: row;
+      width: 100%;
 
       >a {
         display: inline-block;
@@ -530,6 +531,7 @@ template {
 
         &.right {
           align-self: flex-end;
+          margin-left: auto;
         }      
       }
     }
