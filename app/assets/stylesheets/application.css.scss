@@ -402,8 +402,7 @@ template {
       flex-grow: 1;
       background-color: #eee;
       margin: 0 10px;
-      padding: 10px;
-
+      border: 1px solid #37F;
 
       .comic {
         display: flex;
@@ -413,23 +412,27 @@ template {
 
         .comic_header {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           justify-content: flex-start;          
-          height: 40px;
-          line-height: 40px;
-          text-align: left;
           width: 100%;
           background-color: #FFF;
           border-bottom: 1px solid #37F;
           margin-bottom: 10px;
 
           .comic_date {
-            width: 300px;
+            text-align: center;
+            height: 24px; 
+            line-height: 20px;
+            font-size: 12px;
+            width: 100%;
           }
 
           .comic_title {
-            flex: 1;
-          }
+            text-align: center;
+            height: 40px;
+            line-height: 38px;
+            font-size: 20px;
+            width: 100%;          }
         }
 
         .comic_image {
@@ -451,8 +454,11 @@ template {
         line-height: 40px;
         border-top: 1px solid #37F;
         margin-top: 10px;
-        padding-top: 5px;
 
+        >.fill {
+          flex: 1;
+        }
+        
         >.action {
           padding: 0 10px;
           height: 40px;
@@ -478,9 +484,8 @@ template {
           cursor: pointer;
 
           &:hover {
-            background-color: #FFF;
-            color: #00f;
-            border-color: #37F;
+            background-color: #37F;
+            color: #FFF;
           }
         }   
       }

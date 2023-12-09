@@ -1,7 +1,7 @@
 <div class="comic">
   <div class="comic_header">
-    <div class="comic_date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
     <div class="comic_title"><%= @comic.title %></div>
+    <div class="comic_date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
   </div>
 
   <div class="comic_image">
@@ -11,6 +11,7 @@
   <div class="comic_nav">
     <%= link_for_comic(@first, "first") %>
     <%= link_for_comic(@previous, "previous") %>
+    <div class="fill"></div>
     <%= link_for_comic(@next, "next") %>
     <%= link_for_comic(@latest, "latest") %>
   </div>
