@@ -6,7 +6,7 @@ RSpec.describe Comic, type: :model do
       publish_date: DateTime.new,
       title: "Test now",
       description: "Testing todays comic"
-    )
+    )    
   }
 
   it "is not valid without a title" do
@@ -16,6 +16,11 @@ RSpec.describe Comic, type: :model do
 
   it "is not valid without a description" do
     subject.description = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid without an attachment" do
+    subject.image = nil
     expect(subject).to_not be_valid
   end
 

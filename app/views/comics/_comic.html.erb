@@ -1,14 +1,14 @@
 <div class="comic">
-  <div class="comic_header">
-    <div class="comic_title"><%= @comic.title %></div>
-    <div class="comic_date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
+  <div class="comic-header">
+    <div class="comic-title"><%= @comic.title %></div>
+    <div class="comic-date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
   </div>
 
-  <div class="comic_image">
-    <%= image_tag("oops.png", alt: @comic.title, title: @comic.title) %>
+  <div class="comic-image">
+    <%= image_tag @comic.image, alt: @comic.title, title: @comic.title %>
   </div>
 
-  <div class="comic_nav">
+  <div class="comic-nav">
     <%= link_for_comic(@first, "first") %>
     <%= link_for_comic(@previous, "previous") %>
     <div class="fill"></div>

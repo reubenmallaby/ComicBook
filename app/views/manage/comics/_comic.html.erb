@@ -1,0 +1,47 @@
+<% content_for :left_side do %>
+  <div class="overview">
+    <div class="actions">
+      <div class="action">
+        <%= link_to manage_new_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="header">Months</div>
+    <% @months.each do |month| %>
+      <% m = month["m"].to_i || 0 %>
+      <ul class="comics">
+        <% if m == @month %>
+          <li class="current">
+            <div class="month"><%=  I18n.t("date.month_names")[m] %></div>
+            <ul class="days">
+              <% @comics.each do |comic| %>
+                <li class="comic"><%= link_to_comic_with_day(comic) %></li>
+              <% end %>
+            </ul>
+          </li>
+        <% else %>
+          <li class="single"><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="comic">
+  <div class="comic-header">
+    <div class="comic-title"><%= @comic.title %></div>
+    <div class="comic-date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
+  </div>
+
+  <div class="comic-image">
+    <%= image_tag @comic.image, alt: @comic.title, title: @comic.title %>
+  </div>
+
+  <div class="comic-nav">
+    <%= link_to "Edit", manage_edit_comic_path(@comic), class: "action link edit" %>
+    <%= link_to "Delete", manage_delete_comic_path(@comic), method: :delete, class: "action link delete" %>
+  </div>
+</div>

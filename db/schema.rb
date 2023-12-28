@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_03_222907) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_09_165033) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,8 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_222907) do
 
   create_table "comics", force: :cascade do |t|
     t.datetime "publish_date", null: false
-    t.string "title", default: "Name me", null: false
-    t.text "description", default: "Describe me", null: false
+    t.string "title", null: false
+    t.text "description", null: false
     t.boolean "is_published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

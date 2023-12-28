@@ -8,9 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Comic.create!(
+comic = Comic.new(
   title: "In the Beginning",
   description: "Starter comic page",
   publish_date: DateTime.new(2000,1,1),
   is_published: true
 )
+comic.image.attach io: File.open(Rails.root.join('db/images/default.png')), filename: "default.png"
+comic.save!

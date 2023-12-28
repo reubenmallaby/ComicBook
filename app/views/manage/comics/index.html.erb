@@ -1,1 +1,31 @@
+<% content_for :left_side do %>
+  <div class="overview">
+    <div class="actions">
+      <div class="action">
+        <%= link_to manage_new_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="header">Years</div>
+    <% @years.each do |year| %>
+      <% y = year["y"] %>
+      <ul class="comics">
+        <li><%= link_to y, manage_comics_for_year_path(year: y) %></li>
+      </ul>
+      <% end %>
+  </div>
+<% end %>
+
 <h1>Manage Comics</h1>
+<div class="overview index">
+  <div class="header">Years</div>
+  <% @years.each do |year| %>
+    <% y = year["y"] %>
+    <ul class="comics">
+      <li><%= link_to y, manage_comics_for_year_path(year: y) %></li>
+    </ul>
+  <% end %>
+</div>

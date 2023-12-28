@@ -1,0 +1,63 @@
+<div class="form-outer">
+  <%= form_with model: [:manage, @comic], class: 'form' do |form| %>
+    <div class="form-content">
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :title, I18n.t("comic.title") %>
+        </div>
+        <div class="form-input">
+          <%= form.text_field :title, placeholder: I18n.t("comic.title_placeholder"), class: "form-text" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :description, I18n.t("comic.description") %>
+        </div>
+        <div class="form-input">
+          <%= form.text_area :description, placeholder: I18n.t("comic.description_placeholder"), class: "form-text" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :publish_date, I18n.t("comic.publish_date") %>
+        </div>
+        <div class="form-input">
+          <%= form.date_field :publish_date, class: "form-date" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :is_published, I18n.t("comic.is_published") %>
+        </div>
+        <div class="form-input">
+          <%= form.check_box :is_published, class: "form-check-box" %>
+        </div>
+      </div>
+
+      <div class="form-row form-file image">
+        <div class="form-label">
+          <%= form.label :image do %>
+            <%= I18n.t("comic.image") %> (<%= @comic.persisted? ? I18n.t("click_to_change") : I18n.t("  click_to_select") %>)
+            <%= form.file_field :image %>
+            <div id="image_preview" class="image-preview">
+              <%= image_tag @comic.image, height: 120 if @comic.persisted? %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <div class="action form-cancel">
+        <%= link_to :back do %>
+          <i class='fa fa-chevron-left' aria-hidden='true'></i> <%= I18n.t("back") %>
+        <% end %>
+      </div>
+      <div class="fill"></div>
+      <div class="action submit"><%= manager_button(form, text: 'update', icon: 'chevron-right', dir: 'left') %></div>
+    </div>
+  <% end %>
+</div>
