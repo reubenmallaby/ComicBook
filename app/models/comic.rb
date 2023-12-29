@@ -40,6 +40,15 @@ class Comic < ApplicationRecord
     end
   end
 
+  def self.find_by_date(date)
+    return nil if date.blank?
+    begin
+      Comic.where(publish_date: date).first
+    rescue
+      nil #404
+    end
+  end
+
   def self.find_by_published_date(date)
     return nil if date.blank?
     begin

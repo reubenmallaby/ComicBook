@@ -1,5 +1,5 @@
 <% content_for :left_side do %>
-  <div class="overview">
+  <div class="side-view">
     <div class="actions">
       <div class="action">
         <%= link_to manage_new_comic_path, class: "new" do %>
@@ -13,19 +13,20 @@
     <% @years.each do |year| %>
       <% y = year["y"] %>
       <ul class="comics">
-        <li><%= link_to y, manage_comics_for_year_path(year: y) %></li>
+        <li class="single"><%= link_to y, manage_comics_for_year_path(year: y) %></li>
       </ul>
       <% end %>
   </div>
 <% end %>
 
-<h1>Manage Comics</h1>
+<h1><%= I18n.t("comic.title_manage_for") %></h1>
 <div class="overview index">
-  <div class="header">Years</div>
-  <% @years.each do |year| %>
-    <% y = year["y"] %>
-    <ul class="comics">
-      <li><%= link_to y, manage_comics_for_year_path(year: y) %></li>
-    </ul>
-  <% end %>
+  <div class="comics">
+    <% @years.each do |year| %>
+      <% y = year["y"] %>
+      <div class="comic">
+        <%= link_to y, manage_comics_for_year_path(year: y), class: "link" %>
+      </div>
+    <% end %>
+  </div>
 </div>

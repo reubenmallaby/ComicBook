@@ -98,7 +98,7 @@ class Manage::ComicsController < Manage::BaseController
     end
     logger.debug "DATE: #{@date}"
 
-    @comic = Comic.find_by_published_date @date
+    @comic = Comic.find_by_date @date
     logger.debug "Comic? #{@comic.inspect}"
 
     raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?

@@ -1,5 +1,5 @@
 <% content_for :left_side do %>
-  <div class="overview">
+  <div class="side-view">
     <div class="actions">
       <div class="action">
         <%= link_to manage_new_comic_path, class: "new" do %>
@@ -13,19 +13,18 @@
     <% @months.each do |month| %>
       <% m = month["m"].to_i || 0 %>
       <ul class="comics">
-        <li><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m) %></li>
+        <li class="single"><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m) %></li>
       </ul>
     <% end %>
   </div>
 <% end %>
 
 <h1><%= I18n.t("comic.title_manage_for") %> <%= @year %></h1>
-<div class="overview index">
-  <div class="header">Months</div>
-  <% @months.each do |month| %>
-    <% m = month["m"].to_i || 0 %>
-    <ul class="comics">
-      <li><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m) %></li>
-    </ul>
-  <% end %>
+<div class="overview">
+  <div class="comics">
+    <% @months.each do |month| %>
+      <% m = month["m"].to_i || 0 %>
+      <div class="comic"><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m), class: "link" %></div>
+    <% end %>
+  </div>
 </div>

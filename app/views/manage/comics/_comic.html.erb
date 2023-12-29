@@ -1,5 +1,5 @@
 <% content_for :left_side do %>
-  <div class="overview">
+  <div class="side-view">
     <div class="actions">
       <div class="action">
         <%= link_to manage_new_comic_path, class: "new" do %>
@@ -15,7 +15,7 @@
       <ul class="comics">
         <% if m == @month %>
           <li class="current">
-            <div class="month"><%=  I18n.t("date.month_names")[m] %></div>
+            <div class="month"><%= link_to I18n.t("date.month_names")[m], manage_comics_for_month_path(year: @year, month: m) %></div>
             <ul class="days">
               <% @comics.each do |comic| %>
                 <li class="comic"><%= link_to_comic_with_day(comic) %></li>
@@ -41,7 +41,19 @@
   </div>
 
   <div class="comic-nav">
-    <%= link_to "Edit", manage_edit_comic_path(@comic), class: "action link edit" %>
-    <%= link_to "Delete", manage_delete_comic_path(@comic), method: :delete, class: "action link delete" %>
+    <% d = @comic.publish_date %>
+    <%= link_to manage_edit_comic_path(@comic), class: "action link edit" do %>
+      <i class='fa fa-pen-to-square' aria-hidden='true'></i>
+      <%= I18n.t("edit") %>
+    <% end %>
+    <%= link_to manage_publish_comic_path(d.year, d.month, d.day), class: "action link publish", title: 'Publish/hide' do %>
+      <%= published_icon(@comic) %>
+      <%= @comic.is_published? ? I18n.t("hide") : I18n.t("publish") %>
+    <% end %>
+    <div class="fill"></div>
+    <%= link_to manage_delete_comic_path(@comic), method: :delete, class: "action link delete" do %>
+      <i class='fa fa-trash' aria-hidden='true'></i>
+      <%= I18n.t("delete") %>
+    <% end %>
   </div>
 </div>

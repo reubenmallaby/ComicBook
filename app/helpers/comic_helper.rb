@@ -18,8 +18,12 @@ module ComicHelper
   def link_to_comic_with_day(comic, by_date: true)
     date = comic.publish_date
     day_name = I18n.t("date.day_names")[date.wday]
-    text = by_date ? "#{date.day} #{day_name}" : comic.title
-    link_to text, manage_comic_path(date.year, date.month, date.day)
+    text = by_date ?
+             "<div class='day'>#{date.day}</div><div class='day_name'>#{day_name}</div>".html_safe : comic.title
+    link_to text,
+            manage_comic_path(date.year, date.month, date.day),
+            class: comic.is_published? ? 'published' : 'not-published',
+            title:     comic.is_published? ? 'Published' : 'Not published'
   end
 
   def link_to_comic_edit_path(comic)
@@ -30,14 +34,20 @@ module ComicHelper
             class: "fa-regular fa-pen-to-square"
   end
 
+  def published_icon(comic)
+    status_class = comic.is_published? ? 'xmark' : 'check'
+    text = "<i class='fa-regular fa-calendar-#{status_class}' aria-hidden='true'></i>"
+    text.html_safe
+  end
+
   def link_to_comic_publish_path(comic)
     date = comic.publish_date
     title = comic.is_published ? I18n.t("hide") : I18n.t("publish")
-    icon = comic.is_published ? 'eye-slash' : 'image'
+    icon = comic.is_published ? 'check' : 'xmark'
     link_to "",
             manage_publish_comic_path(date.year, date.month, date.day),
             title: title,
-            class: "fa-regular fa-#{icon}"
+            class: "fa-regular fa-calendar-#{icon}"
   end
 
   def link_to_comic_delete_path(comic)
