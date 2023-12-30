@@ -6,11 +6,13 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Comic Book" %>">
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "manage", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "forms", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="manage">
+  <body class="page manage">
     <div class="page-wrapper">
-      <header class="page-header">
+      <header class="page page-header">
         <%= render 'layouts/manage_navigation' %>
       </header>
       <main role="main" class="page-main">

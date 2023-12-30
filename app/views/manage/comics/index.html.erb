@@ -1,21 +1,26 @@
 <% content_for :left_side do %>
-  <div class="side-view">
-    <div class="actions">
-      <div class="action">
-        <%= link_to manage_new_comic_path, class: "new" do %>
-          <i class='fa fa-square-plus' aria-hidden='true'></i>
-          <%= I18n.t("comic.new") %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="header">Years</div>
-    <% @years.each do |year| %>
-      <% y = year["y"] %>
-      <ul class="comics">
-        <li class="single"><%= link_to y, manage_comics_for_year_path(year: y) %></li>
-      </ul>
+  <div class="actions">
+    <div class="action">
+      <%= link_to manage_new_comic_path, class: "new" do %>
+        <i class='fa fa-square-plus' aria-hidden='true'></i>
+        <%= I18n.t("comic.new") %>
       <% end %>
+    </div>
+  </div>
+
+  <div class="calendar">
+    <div class="years">
+      <% @years.each do |year| %>
+        <% y = year["y"].to_i %>
+        <% year_text = "#{y} (#{year["c"]})" %>
+
+        <div class="year">
+          <% current_year = @year == y %>
+          <%= link_to year_text, manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
 <% end %>
 
@@ -24,8 +29,9 @@
   <div class="comics">
     <% @years.each do |year| %>
       <% y = year["y"] %>
+      <% c = year["c"] %>
       <div class="comic">
-        <%= link_to y, manage_comics_for_year_path(year: y), class: "link" %>
+        <%= link_to "#{y} (#{c})", manage_comics_for_year_path(year: y), class: "link" %>
       </div>
     <% end %>
   </div>

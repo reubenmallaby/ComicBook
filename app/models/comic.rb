@@ -10,14 +10,14 @@ class Comic < ApplicationRecord
   scope :oldest, -> { where(is_published: true).order(publish_date: :asc).first }
 
   def self.years
-    sql = "SELECT DISTINCT strftime('%Y', publish_date) y FROM comics ORDER BY y DESC"
+    sql = "SELECT DISTINCT strftime('%Y', publish_date) y, COUNT(*) c FROM comics GROUP BY y ORDER BY y DESC"
     results = ActiveRecord::Base.connection.execute(sql)
     results
   end
 
   def self.months_for_year(year)
     year = year.to_i
-    sql = "SELECT DISTINCT strftime('%m', publish_date) m FROM comics WHERE strftime('%Y', publish_date) = '#{year}' ORDER BY m DESC"
+    sql = "SELECT DISTINCT strftime('%m', publish_date) m, COUNT(*) c FROM comics WHERE strftime('%Y', publish_date) = '#{year}' GROUP BY m ORDER BY m DESC"
     results = ActiveRecord::Base.connection.execute(sql)
     results
   end

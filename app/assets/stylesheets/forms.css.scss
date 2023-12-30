@@ -1,0 +1,155 @@
+.form-outer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    .form-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex: 1;
+
+      .form-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        padding: 0 10px;
+
+        &.form-file {
+          width: 100%;
+          flex-direction: column;
+          max-height: 200px;
+          box-sizing: border-box;
+
+          &.image {
+            height: 180px;
+          }
+
+          input[type=file] {
+            display: none;
+          }
+
+          .form-label {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            box-sizing: border-box;
+
+            label {
+              display: inline-block;
+              width: 100%;
+              cursor: pointer;
+              box-sizing: border-box;
+            }
+          }
+
+          .image-preview {
+            width: 80%;
+            max-width: 600px;
+            height: 140px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+            border-radius: 20px;
+          }
+        }
+
+        .form-label {
+          height: 42px;
+          line-height: 42px;
+          width: 30%;
+          max-width: 220px;
+          margin-right: 10px;
+          box-sizing: border-box;
+          align-self: flex-start;
+        }
+
+        .form-input {
+          flex: 1;
+
+          input, textarea {
+            width: 100%;
+            height: 36px;
+            border: 1px solid #777777;
+            border-radius: 0;
+            box-sizing: border-box;
+            padding: 10px;
+
+            &.form-date {
+              cursor: pointer;
+            }
+          }
+
+          input[type=checkbox] {
+            height: 20px;
+            width: auto;
+          }
+
+          textarea {
+            height: 120px;
+          }
+        }
+      }
+    }
+
+    .form-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      box-sizing: border-box;
+      height: 40px;
+      line-height: 38px;
+      border-top: 1px solid #730E15;
+
+      > .fill {
+        flex: 1;
+      }
+
+      > .action {
+        display: inline-block;
+        height: 100%;
+        text-decoration: none;
+        color: #000;
+        border: 0;
+        min-width: 200px;
+        text-align: center;
+        box-sizing: border-box;
+
+        button, a, a:link, a:visited, a:active {
+          display: inline-block;
+          cursor: pointer;
+          box-sizing: border-box;
+          height: 100%;
+          width: 100%;
+          text-decoration: none;
+          border: 0;
+        }
+
+        a:hover {
+          background-color: #3377FF;
+          color: #FFF;
+        }
+
+        button:hover {
+          background-color: #468847;
+          color: #FFF;
+        }
+      }
+    }
+  }
+}

@@ -32,6 +32,9 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def show_by_date
+    @years = Comic.years
+
+    @month = (params[:month]    || 1).to_i
     @months = Comic.months_for_year @year
 
     start_date = @comic.publish_date
