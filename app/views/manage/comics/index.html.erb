@@ -12,11 +12,12 @@
     <div class="years">
       <% @years.each do |year| %>
         <% y = year["y"].to_i %>
-        <% year_text = "#{y} (#{year["c"]})" %>
 
         <div class="year">
-          <% current_year = @year == y %>
-          <%= link_to year_text, manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' %>
+          <%= link_to manage_comics_for_year_path(year: y), class: 'single' do %>
+            <div class="year_number"><%= y %></div>
+            <div class="count">(<%= year["c"] %>)</div>
+          <% end %>
         </div>
 
       <% end %>

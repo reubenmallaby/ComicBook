@@ -1,5 +1,6 @@
 class Manage::ComicsController < Manage::BaseController
-  before_action :get_comic, only: [:show_by_date, :edit, :update, :destroy, :publish]
+  before_action :get_comic, only: [:show_by_date, :edit, :destroy, :publish]
+  before_action :get_comic_by_id, only: [:update]
 
   def index
     @years = Comic.years
@@ -103,6 +104,12 @@ class Manage::ComicsController < Manage::BaseController
 
     @comic = Comic.find_by_date @date
     logger.debug "Comic? #{@comic.inspect}"
+
+    raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?
+  end
+
+  def get_comic_by_id
+    @comic = Comic.find params[:id]
 
     raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?
   end

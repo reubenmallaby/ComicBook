@@ -18,17 +18,18 @@ Rails.application.routes.draw do
 
     get 'comics'                        => "comics#index",        as: :comics
     post 'comics'                       => "comics#create"
+
     get 'comics/new'                    => "comics#new",          as: :new_comic
     get 'comics/:year'                  => "comics#index_year",   as: :comics_for_year
     get 'comics/:year/:month'           => "comics#index_month",  as: :comics_for_month
 
     get "comic/:year/:month/:day"       => "comics#show_by_date", as: :comic
     get "comic/:year/:month/:day/edit"  => "comics#edit",         as: :edit_comic
-    put "comic/:year/:month/:day"       => "comics#create",       as: :create_comic
-    patch "comic/:year/:month/:day"     => "comics#update",       as: :update_comic
-    patch "comic/:year/:month/:day/publish" => "comics#publish",  as: :publish_comic
-    delete "comic/:year/:month/:day"    => "comics#destroy",      as: :delete_comic
 
+    patch "comic/:id"                   => "comics#update",       as: :update_comic
+    patch "comic/:year/:month/:day/publish" => "comics#publish",  as: :publish_comic
+
+    delete "comic/:year/:month/:day"    => "comics#destroy",      as: :delete_comic
   end
 
   # Defines the root path route ("/")

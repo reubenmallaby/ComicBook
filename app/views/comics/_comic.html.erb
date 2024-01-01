@@ -6,6 +6,10 @@
 
   <div class="comic-image">
     <%= image_tag @comic.image, alt: @comic.title, title: @comic.title %>
+
+    <div class="comic-description">
+      <%= @comic.description %>
+    </div>
   </div>
 
   <div class="comic-nav">

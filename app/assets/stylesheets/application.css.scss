@@ -249,8 +249,19 @@ template {
           margin: 10px auto;
 
           img {
+            display: block;
             max-height: 600px;
             max-width: 100%;
+            margin: 10px auto;
+          }
+
+          .comic-description {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            font-style: italic;
+            text-align: center;
+            background-color: #CCCCCC;
           }
         }
       }

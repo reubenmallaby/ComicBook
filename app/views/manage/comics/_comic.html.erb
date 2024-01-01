@@ -12,19 +12,24 @@
     <div class="years">
       <% @years.each do |year| %>
         <% y = year["y"].to_i %>
-        <% year_text = "#{y} (#{year["c"]})" %>
 
         <div class="year">
           <% current_year = @year == y %>
-          <%= link_to year_text, manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' %>
+          <%= link_to manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' do %>
+            <div class="year_number"><%= y %></div>
+            <div class="count">(<%= year["c"] %>)</div>
+          <% end %>
+
           <% if current_year %>
             <div class="months">
               <% @months.each do |month| %>
                 <% m = month["m"].to_i %>
                 <% current_month = @month == m %>
                 <div class="month">
-                  <% month_text = "#{I18n.t("date.month_names")[m]} (#{month['c']})" %>
-                  <%= link_to month_text, manage_comics_for_month_path(year: @year, month: month["m"]), class: , class: current_month ? 'current' : 'single' %>
+                  <%= link_to manage_comics_for_month_path(year: @year, month: month["m"]), class: , class: current_month ? 'current' : 'single' do %>
+                    <div class="month_name"><%= I18n.t("date.month_names")[m] %></div>
+                    <div class="count">(<%= month["c"] %>)</div>
+                  <% end %>
                   <% if current_month %>
                     <% if @comics.count > 1 %>
                       <div class="comics">
@@ -38,7 +43,7 @@
                             <% end %>
                           </div>
                         <% end %>
-x                    </div>
+                      </div>
                     <% end %>
                   <% end %>
                 </div>
@@ -60,11 +65,15 @@ x                    </div>
 
   <div class="comic-image">
     <%= image_tag @comic.image, alt: @comic.title, title: @comic.title %>
+
+    <div class="comic-description">
+      <%= @comic.description %>
+    </div>
   </div>
 
   <div class="comic-nav">
     <% d = @comic.publish_date %>
-    <%= link_to manage_edit_comic_path(@comic), class: "action link edit" do %>
+    <%= link_to manage_edit_comic_path(d.year, d.month, d.day), class: "action link edit" do %>
       <i class='fa fa-pen-to-square' aria-hidden='true'></i>
       <%= I18n.t("edit") %>
     <% end %>
