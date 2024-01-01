@@ -40,7 +40,7 @@
       <div class="form-row form-file image">
         <div class="form-label">
           <%= form.label :image do %>
-            <%= I18n.t("comic.image") %> (<%= @comic.persisted? ? I18n.t("click_to_change") : I18n.t("  click_to_select") %>)
+            <%= I18n.t("comic.image") %> (<%= @comic.persisted? ? I18n.t("click_to_change") : I18n.t("click_to_select") %>)
             <%= form.file_field :image %>
             <div id="image_preview" class="image-preview">
               <%= image_tag @comic.image, height: 120 if @comic.persisted? %>
