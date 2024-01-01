@@ -8,21 +8,7 @@
     </div>
   </div>
 
-  <div class="calendar">
-    <div class="years">
-      <% @years.each do |year| %>
-        <% y = year["y"].to_i %>
-
-        <div class="year">
-          <%= link_to manage_comics_for_year_path(year: y), class: 'single' do %>
-            <div class="year_number"><%= y %></div>
-            <div class="count">(<%= year["c"] %>)</div>
-          <% end %>
-        </div>
-
-      <% end %>
-    </div>
-  </div>
+  <%= render "side_view_calendar" %>
 <% end %>
 
 <h1><%= I18n.t("comic.title_manage_for") %></h1>

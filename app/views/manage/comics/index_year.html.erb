@@ -8,37 +8,7 @@
     </div>
   </div>
 
-  <div class="calendar">
-    <div class="years">
-      <% @years.each do |year| %>
-        <% y = year["y"].to_i %>
-
-        <div class="year">
-          <% current_year = @year == y %>
-          <%= link_to manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' do %>
-            <div class="year_number"><%= y %></div>
-            <div class="count">(<%= year["c"] %>)</div>
-          <% end %>
-
-          <% if current_year %>
-            <div class="months">
-              <% @months.each do |month| %>
-                <% m = month["m"].to_i %>
-                <% current_month = @month == m %>
-                <div class="month">
-                  <%= link_to manage_comics_for_month_path(year: @year, month: month["m"]), class: , class: current_month ? 'current' : 'single' do %>
-                    <div class="month_name"><%= I18n.t("date.month_names")[m] %></div>
-                    <div class="count">(<%= month["c"] %>)</div>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-
-      <% end %>
-    </div>
-  </div>
+  <%= render "side_view_calendar" %>
 <% end %>
 
 <h1><%= I18n.t("comic.title_manage_for") %> <%= @year %></h1>
