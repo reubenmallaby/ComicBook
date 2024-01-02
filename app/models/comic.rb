@@ -6,8 +6,11 @@ class Comic < ApplicationRecord
   validates :publish_date, uniqueness: true 
   validates :image, presence: true
 
-  scope :latest, -> { where(is_published: true).order(publish_date: :desc).first }
-  scope :oldest, -> { where(is_published: true).order(publish_date: :asc).first }
+  scope :latest, -> { where(is_published: true).order(publish_date: :desc).limit(1).first }
+  scope :oldest, -> { where(is_published: true).order(publish_date: :asc).limit(1).first }
+
+  scope :previous, ->(date) { where("comics.publish_date < ?", date).latest }
+  scope :next, ->(date) { where("comics.publish_date > ?", date).oldest }
 
   def self.years
     sql = "SELECT DISTINCT strftime('%Y', publish_date) y, COUNT(*) c FROM comics GROUP BY y ORDER BY y DESC"
@@ -22,23 +25,28 @@ class Comic < ApplicationRecord
     results
   end
 
-  def self.previous(date)
-    return nil if date.blank?
-    begin
-      Comic.where(is_published: true).("publish_date < ?", date).order(publish_date: :desc).first
-    rescue
-      nil #404
-    end
-  end
-
-  def self.next(date)
-    return nil if date.blank?
-    begin
-      Comic.where(is_published: true).("publish_date > ?", date).order(publish_date: :asc).first
-    rescue
-      nil #404
-    end
-  end
+  # def self.previous(date)
+  #   logger.debug "PREVIOUS #{date}"
+  #
+  #   comic = nil
+  #   unless date.blank?
+  #     logger.debug "PREVIOUS ... called"
+  #     #sql = Comic.where(is_published: true).("publish_date < ?", date).order(publish_date: :desc).limit(1).to_sql
+  #     #logger.debug "SQL #{sql}"
+  #     comic = where(is_published: true).("publish_date < ?", date).order(publish_date: :desc).limit(1).first.publish_date
+  #     logger.debug "PREVIOUS :: COMIC : #{comic}"
+  #   end
+  #   comic
+  # end
+  #
+  # def self.next(date)
+  #   return nil if date.blank?
+  #   begin
+  #     Comic.where(is_published: true).("publish_date > ?", date).order(publish_date: :asc).first.publish_date
+  #   rescue
+  #     nil #404
+  #   end
+  # end
 
   def self.find_by_date(date)
     return nil if date.blank?

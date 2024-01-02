@@ -5,7 +5,7 @@ class ComicsController < ApplicationController
     @comic = Comic.latest
     
     @first    = Comic.oldest.publish_date
-    @previous = Comic.previous(@date)&.publish_date || nil
+    @previous = Comic.previous(@date)
     @next     = nil
     @latest   = nil
   end
@@ -18,15 +18,15 @@ class ComicsController < ApplicationController
     begin
       @date = DateTime.new year, month, day
     rescue
-      @date = nil
+      raise ActionController::RoutingError.new('No comic on date given')
     end
-   
+
     @comic = Comic.find_by_published_date @date
 
-    @first    = Comic.oldest&.publish_date          || nil
-    @previous = Comic.previous(@date)&.publish_date || nil
-    @next     = Comic.next(@date)&.publish_date     || nil
-    @latest   = Comic.latest&.publish_date          || nil
-    @latest, @first = nil, nil if @latest == @first
+    @first    = Comic.oldest
+    @previous = Comic.previous(@date)
+    @next     = Comic.next(@date)
+    @latest, @first = nil, nil       if @latest == @first
+    @latest   = Comic.latest     unless @latest == @first
   end
 end

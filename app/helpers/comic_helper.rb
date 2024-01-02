@@ -1,10 +1,12 @@
 module ComicHelper
   ALLOWED_DIRECTIONS = [:left, :right]
 
-  def link_for_comic(date, text)
+  def link_for_comic(comic, text)
     translated = I18n.t(text)
 
-    return content_tag(:div, translated, class: "action no_link #{text}", title: translated) if date.blank?
+    return content_tag(:div, translated, class: "action no_link #{text}", title: translated) if comic.blank?
+
+    date = comic.publish_date
 
     link_to(
       translated,
