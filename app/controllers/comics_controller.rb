@@ -4,7 +4,7 @@ class ComicsController < ApplicationController
     @date = DateTime.new
     @comic = Comic.latest
     
-    @first    = Comic.oldest.publish_date
+    @first    = Comic.oldest
     @previous = Comic.previous(@date)
     @next     = nil
     @latest   = nil
