@@ -13,40 +13,17 @@ class Comic < ApplicationRecord
   scope :next, ->(date) { where("comics.publish_date > ?", date).oldest }
 
   def self.years
-    sql = "SELECT DISTINCT strftime('%Y', publish_date) y, COUNT(*) c FROM comics GROUP BY y ORDER BY y DESC"
+    sql = "SELECT DATE_PART('YEAR', publish_date)::int AS y, COUNT(id) AS c FROM comics GROUP BY y ORDER BY y DESC"
     results = ActiveRecord::Base.connection.execute(sql)
     results
   end
 
   def self.months_for_year(year)
     year = year.to_i
-    sql = "SELECT DISTINCT strftime('%m', publish_date) m, COUNT(*) c FROM comics WHERE strftime('%Y', publish_date) = '#{year}' GROUP BY m ORDER BY m DESC"
+    sql = "SELECT DATE_PART('MONTH', publish_date)::int AS m, COUNT(id) AS c FROM comics WHERE DATE_PART('YEAR', publish_date)::int = #{year} GROUP BY m ORDER BY m DESC"
     results = ActiveRecord::Base.connection.execute(sql)
     results
   end
-
-  # def self.previous(date)
-  #   logger.debug "PREVIOUS #{date}"
-  #
-  #   comic = nil
-  #   unless date.blank?
-  #     logger.debug "PREVIOUS ... called"
-  #     #sql = Comic.where(is_published: true).("publish_date < ?", date).order(publish_date: :desc).limit(1).to_sql
-  #     #logger.debug "SQL #{sql}"
-  #     comic = where(is_published: true).("publish_date < ?", date).order(publish_date: :desc).limit(1).first.publish_date
-  #     logger.debug "PREVIOUS :: COMIC : #{comic}"
-  #   end
-  #   comic
-  # end
-  #
-  # def self.next(date)
-  #   return nil if date.blank?
-  #   begin
-  #     Comic.where(is_published: true).("publish_date > ?", date).order(publish_date: :asc).first.publish_date
-  #   rescue
-  #     nil #404
-  #   end
-  # end
 
   def self.find_by_date(date)
     return nil if date.blank?
