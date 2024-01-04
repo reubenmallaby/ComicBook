@@ -6,7 +6,7 @@
 
       <div class="year">
         <% current_year = @year && @year == y %>
-        <%= link_to manage_comics_for_year_path(year: y), class: current_year ? 'current' : 'single' do %>
+        <%= link_to comics_for_year_path(year: y), class: current_year ? 'current' : 'single' do %>
           <div class="year_number"><%= y %></div>
           <div class="count">(<%= year["c"] %>)</div>
         <% end %>
@@ -17,7 +17,7 @@
               <% m = month["m"].to_i %>
               <% current_month = @month && @month == m %>
               <div class="month">
-                <%= link_to manage_comics_for_month_path(year: @year, month: month["m"]), class: , class: current_month ? 'current' : 'single' do %>
+                <%= link_to comics_for_month_path(year: @year, month: month["m"]), class: , class: current_month ? 'current' : 'single' do %>
                   <div class="month_name"><%= I18n.t("date.month_names")[m] %></div>
                   <div class="count">(<%= month["c"] %>)</div>
                 <% end %>
@@ -28,7 +28,7 @@
                         <% d = comic.publish_date %>
                         <% current_comic = @comic && @comic.publish_date.day == d.day %>
                         <div class="comic">
-                          <%= link_to manage_comic_path(year: @year, month: @month, day: d.day), class: current_comic ? 'current' : 'single' do %>
+                          <%= link_to comic_path(year: @year, month: @month, day: d.day), class: current_comic ? 'current' : 'single' do %>
                             <div class="date"><%= d.day %></div>
                             <div class="day"><%= I18n.t("date.day_names")[d.wday] %></div>
                           <% end %>

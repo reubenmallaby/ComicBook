@@ -44,6 +44,7 @@ en:
   delete: "Delete"
   publish: "Hidden, click to publish"
   hide: "Published, click to hide"
+  calendar: "Calendar"
 
   comic:
     new: "Add comic"
@@ -60,4 +61,5 @@ en:
     saved_error: "Could not save comic"
     updated_error: "Could not update comic"
     title_manage_for: "Manage Comics for"
+    title_for: "Comics for"
     go_to_comic: "Go to comic"

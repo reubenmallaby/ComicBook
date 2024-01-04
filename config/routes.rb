@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  get 'comics/:year'            => "comics#index", as: :comics_for_year
-  get 'comics/:year/:month'     => "comics#index", as: :comics_for_month
-  get "comic/:year/:month/:day" => "comics#show",  as: :comic
+  get 'comics'                  => "comics#index",     as: :comics
+  get 'comics/:year'            => "comics#for_year",  as: :comics_for_year
+  get 'comics/:year/:month'     => "comics#for_month", as: :comics_for_month
+  get "comic/:year/:month/:day" => "comics#show",      as: :comic
 
   #get "user" => "users#index"
   #get "user/:id" => "users#show"

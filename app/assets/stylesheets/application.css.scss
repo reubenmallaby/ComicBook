@@ -200,8 +200,94 @@ template {
       display: flex;
       flex-direction: column;
       width: 200px;
-      border: 1px solid #eee;
+      border: 1px solid #3377FF;
       margin: 10px 0 10px 10px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      .calendar {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        box-sizing: border-box;
+        border-bottom: 1px solid #3377FF;
+        margin-bottom: 10px;
+
+        .title {
+          font-weight: 600;
+          text-align: center;
+          width: 100%;
+          color: #3377FF;
+          height: 30px;
+          font-size: 22px;
+          padding: 4px;
+        }
+
+        .years, .months, .comics {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 4px;
+          box-sizing: border-box;
+          padding: 0;
+
+          .year, .month, .comic {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+
+            >div {
+              margin-left: 5px;
+            }
+
+            a, a:link, a:active, a:visited {
+              text-decoration: none;
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              justify-content: space-between;
+              color: #000000;
+              border: 1px solid transparent;
+              box-sizing: border-box;
+              padding: 4px 10px;
+
+              &.current {
+                color: #FFFFFF;
+                background-color: #3377FF;
+                font-weight: 600;
+                cursor: default;
+
+                &:hover {
+                  color: #FFFFFF;
+                  background-color: #3377FF;
+                }
+              }
+
+              &.single:hover {
+                color: #3377FF;
+                font-weight: 600;
+              }
+            }
+          }
+
+          .comic {
+            padding: 0;
+
+            a {
+              .date {
+                width: 20px;
+                text-align: right;
+                padding: 0;
+              }
+
+              .day {
+                flex: 1;
+                text-align: left;
+                padding: 0 0 0 10px;
+              }
+            }
+          }
+        }
+      }
     }
 
     .container {
@@ -255,15 +341,17 @@ template {
             margin: 10px auto;
           }
 
-          .comic-description {
-            box-sizing: border-box;
-            width: 100%;
-            padding: 10px;
-            font-style: italic;
-            text-align: center;
-            background-color: #CCCCCC;
-          }
+
         }
+      }
+
+      .comic-description {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px 0;
+        font-style: italic;
+        text-align: center;
+        background-color: #DEF;
       }
 
       .comic-nav {
@@ -307,6 +395,72 @@ template {
           &:hover {
             background-color: #37F;
             color: #FFF;
+          }
+        }
+      }
+
+      .overview {
+        width: 90%;
+        min-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #3377FF;
+        box-sizing: border-box;
+        background-color: #FFFFFF;
+
+        .comics {
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          margin: 0;
+
+          .comic {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .link {
+              display: inline-block;
+              flex: 1;
+              box-sizing: border-box;
+              flex-direction: row;
+              margin: 0;
+              padding: 4px 10px;
+              min-width: 600px;
+              border: 0;
+              height: 32px;
+              line-height: 24px;
+              color: #000000;
+              background-color: #FFFFFF;
+              text-decoration: none;
+
+              &:hover {
+                background-color: #3377FF;
+                color: #FFFFFF;
+              }
+
+              .date {
+                display: inline-block;
+                width: 36px;
+                padding: 0 4px;
+                text-align: right;
+              }
+
+              .day {
+                display: inline-block;
+                width: 130px;
+              }
+
+              .title {
+                display: inline-block;
+                min-width: 130px;
+                flex: 1;
+              }
+            }
           }
         }
       }
