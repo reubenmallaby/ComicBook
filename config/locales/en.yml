@@ -75,6 +75,18 @@ en:
     links:
       sign_in: "Sign in"
       sign_up: "Sign up"
+      sign_out: "Sign out"
+      edit: "Edit profile"
       forgot: "Forgot your password?"
       no_confirmation: "Did not receive confirmation instructions?"
       no_instructions: "Did not receive unlock instructions?"
+    profile:
+      name: "Name"
+      email: "Email"
+      edit_title: "Edit my profile"
+      password: "New password"
+      password_confirmation: "Confirm new password"
+      current_password: "Current password"
+      current_password_reason: "(to authorise changes)"
+      cancel_account: "Cancel my account"
+      submit: "Apply changes"

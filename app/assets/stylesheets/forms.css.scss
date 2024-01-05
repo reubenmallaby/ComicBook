@@ -147,6 +147,16 @@
 
         button {
           color: #468847;
+
+          &.danger {
+            color: #730E15;
+
+            &:hover {
+              background-color: #730E15;
+              color: #FFFFFF;
+            }
+          }
+
           &:hover {
             background-color: #468847;
             color: #FFF;

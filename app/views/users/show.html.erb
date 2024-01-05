@@ -1,0 +1,27 @@
+<div class="profile">
+
+  <div class="profile-nav">
+    <%= link_to destroy_user_session_path, method: :delete, class: "action sign-out" do %>
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <%= I18n.t("devise.links.sign_out") %>
+    <% end %>
+    <div class="break"></div>
+    <%= link_to edit_user_registration_path, class: "action edit" do %>
+      <i class="fa-solid fa-pen-to-square"></i>
+      <%= I18n.t("devise.links.edit") %>
+    <% end %>
+
+  </div>
+
+  <div class="profile-content">
+    <div class="profile-main">
+      <div class="title">
+        <%= current_user.name %>
+      </div>
+
+      <div class="info"><%= I18n.t("devise.profile.name") %>: <%= current_user.name %></div>
+      <div class="info"><%= I18n.t("devise.profile.email") %>: <%= current_user.email %></div>
+
+    </div>
+  </div>
+</div>
