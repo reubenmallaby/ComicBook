@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   get 'comics/:year/:month'     => "comics#for_month", as: :comics_for_month
   get "comic/:year/:month/:day" => "comics#show",      as: :comic
 
-  #get "user" => "users#index"
-  #get "user/:id" => "users#show"
+  get "user" => "users#show"
 
   namespace :manage do
     root "comics#index"

@@ -98,12 +98,12 @@ class Manage::ComicsController < Manage::BaseController
     begin
       @date = DateTime.new @year, @month, @day
     rescue
-      @date = nil
+      raise ActionController::RoutingError.new('Invalid date')
     end
 
     @comic = Comic.find_by_date @date
 
-    raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?
+    not_found if @comic.blank?
   end
 
   def get_comic_by_id

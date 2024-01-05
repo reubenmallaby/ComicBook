@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users, id: :uuid do |t|
       t.string :name
+      t.boolean :admin, default: false, null: false
       
       ## Database authenticatable
       t.string :email,              null: false, default: ""
