@@ -561,6 +561,15 @@ template {
   }
 }
 
+.danger {
+  color: #730E15 !important;
+
+  &:hover {
+    color: #FFFFFF !important;
+    background-color: #730E15 !important;
+  }
+}
+
 /*
   Flash messages
 */

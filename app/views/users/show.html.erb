@@ -1,10 +1,15 @@
 <div class="profile">
 
   <div class="profile-nav">
-    <%= link_to destroy_user_session_path, method: :delete, class: "action sign-out" do %>
+    <div class="title"><%= I18n.t("devise.profile.nav_title") %></div>
+    <%=  button_to destroy_user_session_path,
+                   method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } },
+                   title: I18n.t("devise.links.sign_out"),
+                   class: "button danger" do %>
       <i class="fa-solid fa-right-from-bracket"></i>
       <%= I18n.t("devise.links.sign_out") %>
     <% end %>
+
     <div class="break"></div>
     <%= link_to edit_user_registration_path, class: "action edit" do %>
       <i class="fa-solid fa-pen-to-square"></i>

@@ -81,6 +81,7 @@ en:
       no_confirmation: "Did not receive confirmation instructions?"
       no_instructions: "Did not receive unlock instructions?"
     profile:
+      nav_title: "Actions"
       name: "Name"
       email: "Email"
       edit_title: "Edit my profile"
@@ -90,3 +91,6 @@ en:
       current_password_reason: "(to authorise changes)"
       cancel_account: "Cancel my account"
       submit: "Apply changes"
+    confirm:
+      title: "Resend confirmation instructions"
+      resend: "Resend"
