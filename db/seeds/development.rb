@@ -45,5 +45,5 @@ def create_dev_user(name, admin: false)
   user.skip_confirmation!
   user.save!
 end
-%w[ArtistOne, Artist2, AssistantOne].each {|name| create_dev_user(name, admin: true) }
+%w[ArtistOne Artist2 AssistantOne].each {|name| create_dev_user(name, admin: true) }
 %w[UserOne UserTwo UserThree UserFour UserFive].each { |name| create_dev_user(name) }
