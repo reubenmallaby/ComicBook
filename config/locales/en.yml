@@ -63,3 +63,18 @@ en:
     title_manage_for: "Manage Comics for"
     title_for: "Comics for"
     go_to_comic: "Go to comic"
+
+  devise:
+    sign_in:
+      title: "Log in"
+      email: "Email"
+      email_placeholder: "me@example.com"
+      submit: "Sign in"
+      password: "Password"
+      remember_me: "Remember me"
+    links:
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+      forgot: "Forgot your password?"
+      no_confirmation: "Did not receive confirmation instructions?"
+      no_instructions: "Did not receive unlock instructions?"

@@ -114,7 +114,6 @@
       box-sizing: border-box;
       height: 40px;
       line-height: 38px;
-      border-top: 1px solid #730E15;
 
       > .fill {
         flex: 1;
@@ -138,6 +137,7 @@
           width: 100%;
           text-decoration: none;
           border: 0;
+          color: #000000;
         }
 
         a:hover {
@@ -145,9 +145,22 @@
           color: #FFF;
         }
 
-        button:hover {
-          background-color: #468847;
-          color: #FFF;
+        button {
+          color: #468847;
+          &:hover {
+            background-color: #468847;
+            color: #FFF;
+          }
+        }
+
+        &.form-cancel {
+          a {
+            color: #3377FF;
+
+            &:hover {
+              color: #FFFFFF;
+            }
+          }
         }
       }
     }
