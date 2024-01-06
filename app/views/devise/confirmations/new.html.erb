@@ -10,7 +10,7 @@
             <%= form.label :email, I18n.t("devise.sign_in.email") %>
           </div>
           <div class="form-input">
-            <%= form.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-text" %>
+            <%= form.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "me@example.com", class: "form-text" %>
           </div>
         </div>
       </div>

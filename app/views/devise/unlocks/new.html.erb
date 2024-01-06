@@ -1,16 +1,37 @@
-<h2>Resend unlock instructions</h2>
+<div class="profile-form">
+  <div class="title"><%= I18n.t("devise.unlocks.title") %></div>
+  <div class="form-outer">
+    <%= form_with(model: resource, scope: resource_name, url: unlock_path(resource_name), method: :put, class: "form") do |form| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="form-content">
+        <div class="form-row">
+          <div class="form-label">
+            <%= form.label :email, I18n.t("devise.unlocks.email") %>
+          </div>
+          <div class="form-input">
+            <%= form.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "me@example.com", class: "form-text" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="form-footer">
+        <div class="action form-cancel">
+          <%= link_to :back do %>
+            <i class='fa fa-chevron-left' aria-hidden='true'></i> <%= I18n.t("back") %>
+          <% end %>
+        </div>
+
+        <div class="fill"></div>
+
+        <div class="action submit">
+          <%= button_tag :submit, class: "button", id: "sign-in-button" do %>
+            <%= I18n.t("devise.unlocks.resend") %><i class='fa fa-chevron-right' aria-hidden='true'></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

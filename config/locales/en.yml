@@ -94,3 +94,16 @@ en:
     confirm:
       title: "Resend confirmation instructions"
       resend: "Resend"
+    password:
+      title_forgot: "Forgot your password?"
+      title_change: "Change my password"
+      change: "Change"
+      send: "Send me instructions"
+    sign_up:
+      title: "Create an account"
+      email: "Email"
+      send: "Sign me up!"
+    unlocks:
+      title: "Resend unlock instructions"
+      email: "Email"
+      resend: "Send me instructions"

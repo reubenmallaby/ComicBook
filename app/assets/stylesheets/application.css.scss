@@ -519,44 +519,28 @@ template {
   }
 }
 
-.login {
+.error-explanation {
   display: flex;
   flex-direction: column;
-  width: 600px;
-  margin: 10px auto;
-  border: 1px solid #3377FF;
+  width: 100%;
   box-sizing: border-box;
+  border: 1px solid #730E15;
 
   .title {
-    width: 100%;
-    font-weight: 600;
     text-align: center;
-    box-sizing: border-box;
-    font-size: 24px;
-    padding: 10px 0;
-    line-height: 44px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 20px;
+    width: 100%;
   }
 
-  .devise-links {
+  .errors {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     width: 100%;
-    border-top: 1px solid #3377FF;
-    padding-top: 40px;
 
-    .devise-link {
-      box-sizing: border-box;
-      width: 100%;
-      display: block;
-      padding: 5px 10px;
-
-      text-decoration: none;
-      color: #000000;
-
-      &:hover {
-        background-color: #bbbbff;
-      }
+    .error {
+      color: #730E15;
     }
   }
 }
