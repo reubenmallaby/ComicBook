@@ -3,4 +3,28 @@
 <%= link_to "Shop", root_path %>
 <%= link_to "About", root_path %>
 <%= link_to "Log in", new_user_session_path, class: "right" unless user_signed_in? %>
-<%= link_to current_user.name, user_path, class: "right" if user_signed_in? %>
+<%#= link_to current_user.name, user_path, class: "right" if user_signed_in? %>
+
+<div class="spacer"></div>
+
+<% if user_signed_in? %>
+  <div class="dropdown">
+    <div class="dropdown-button"><i class="fa-regular fa-user"></i><%= current_user.name %></div>
+    <div class="dropdown-content">
+      <%= link_to user_path do %>
+        <i class="fa-solid fa-user-secret"></i>
+        <%= I18n.t("nav.profile") %>
+      <% end %>
+      <div class="spacer"></div>
+
+      <div class="spacer"></div>
+      <%=  button_to destroy_user_session_path,
+                     method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } },
+                     title: I18n.t("nav.sign_out"),
+                     class: "nav-dropdown-item button danger" do %>
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <%= I18n.t("devise.links.sign_out") %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

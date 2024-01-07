@@ -57,9 +57,9 @@
           <% end %>
         </div>
 
-        <div class="fill"></div>
+        <div class="spacer"></div>
         <div class="action"><%= button_to I18n.t("devise.profile.cancel_account"), registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button danger" %></div>
-        <div class="fill"></div>
+        <div class="spacer"></div>
 
         <div class="action submit">
           <%= button_tag :submit, class: "button", id: "sign-in-button" do %>

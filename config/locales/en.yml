@@ -107,3 +107,7 @@ en:
       title: "Resend unlock instructions"
       email: "Email"
       resend: "Send me instructions"
+
+  nav:
+    profile: "My profile"
+    sign_out: "Sign out"

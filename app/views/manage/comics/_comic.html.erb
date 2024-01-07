@@ -35,7 +35,7 @@
       <%= published_icon(@comic) %>
       <%= @comic.is_published? ? I18n.t("hide") : I18n.t("publish") %>
     <% end %>
-    <div class="fill"></div>
+    <div class="spacer"></div>
     <%= link_to manage_delete_comic_path(@comic), method: :delete, class: "action link delete" do %>
       <i class='fa fa-trash' aria-hidden='true'></i>
       <%= I18n.t("delete") %>

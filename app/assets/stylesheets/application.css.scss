@@ -363,7 +363,7 @@ template {
         line-height: 40px;
         border-top: 1px solid #37F;
 
-        >.fill {
+        >.spacer {
           flex: 1;
         }
 
@@ -490,23 +490,88 @@ template {
       display: flex;
       flex-direction: row;
       width: 100%;
+      justify-content: flex-start;
 
       >a {
+        padding: 0 25px;
+      }
+
+      >div, >a {
         display: inline-block;
         margin: 0 10px;
-        color: #777777;
+        color: #000000;
         text-decoration: none;
         text-shadow: 0 1px 0 white;
-        padding: 0 25px;
+        box-sizing: border-box;
 
-        &:hover {
-          background-color: #ccc;
+        &.spacer {
+          flex: 1;
+          min-width: 150px;
         }
 
         &.right {
           align-self: flex-end;
           margin-left: auto;
         }
+
+        /* dropdown */
+        &.dropdown {
+          position: relative;
+          display: inline-block;
+          width: 200px;
+          box-sizing: border-box;
+
+          &:hover .dropdown-content {
+            display: block;
+          }
+          &:hover .dropdown-button {
+            background-color: #468847;
+            color: #FFFFFF;
+          }
+
+          .dropdown-button {
+            box-sizing: border-box;
+            font-size: 16px;
+            border: none;
+            text-align: center;
+
+            i {
+              margin-right: 10px;
+            }
+          }
+
+          .dropdown-content {
+            display: none;
+            box-sizing: border-box;
+            position: absolute;
+            background-color: #f1f1f1;
+            width: 100%;
+            z-index: 1;
+
+            button, a {
+              box-sizing: border-box;
+              width: 100%;
+              text-align: left;
+              border: 0;
+              text-decoration: none;
+              color: #000000;
+              font-size: 16px;
+              line-height: 32px;
+              padding: 5px 10px;
+              display: block;
+              cursor: pointer;
+              height: 48px;
+
+              &:hover {
+                background-color: #ddd;
+              }
+            }
+          }
+        }
+      }
+
+      a:hover {
+        background-color: #ccc;
       }
     }
   }
@@ -552,6 +617,15 @@ template {
     color: #FFFFFF !important;
     background-color: #730E15 !important;
   }
+}
+
+.fill {
+  margin: 10px;
+  border-bottom: 1px solid #777777;
+}
+.spacer {
+  margin: 10px;
+  border-bottom: 1px solid transparent;
 }
 
 /*
