@@ -1,4 +1,6 @@
 class Comic < ApplicationRecord
+  acts_as_taggable_on :tags
+
   has_one_attached :image
 
   validates :title, presence: true

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     get 'comics'                        => "comics#index",        as: :comics
     post 'comics'                       => "comics#create"
+    get 'tagged/:tag'                   => "comics#tagged",       as: :tagged
 
     get 'comics/new'                    => "comics#new",          as: :new_comic
     get 'comics/:year'                  => "comics#index_year",   as: :comics_for_year

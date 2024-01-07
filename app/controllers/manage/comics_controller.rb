@@ -4,6 +4,7 @@ class Manage::ComicsController < Manage::BaseController
 
   def index
     @years = Comic.years
+    @tags = Comic.tag_counts_on(:tags)
   end
 
   def index_year
@@ -89,6 +90,12 @@ class Manage::ComicsController < Manage::BaseController
     redirect_to manage_comics_url
   end
 
+  def tagged
+    @tag = params[:tag]
+    @comics = Comic.tagged_with(@tag).order(publish_date: :desc).limit(10)
+    @max_count = Comic.tagged_with(@tag).count
+  end
+
   private
   def get_comic
     @year = params[:year].to_i  || 2000
@@ -113,6 +120,6 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def comic_params
-    params.require(:comic).permit(:title, :description, :publish_date, :is_published, :image)
+    params.require(:comic).permit(:title, :description, :publish_date, :is_published, :image, :tag_list)
   end
 end

@@ -9,6 +9,11 @@
   <div class="dropdown">
     <div class="dropdown-button"><i class="fa-regular fa-user"></i><%= current_user.name %></div>
     <div class="dropdown-content">
+      <%= link_to manage_root_path do %>
+        <i class="fa-solid fa-warehouse"></i>
+        <%= I18n.t("nav.manage") %>
+      <% end %>
+
       <%= link_to user_path do %>
         <i class="fa-solid fa-user-secret"></i>
         <%= I18n.t("nav.profile") %>

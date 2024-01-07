@@ -1,4 +1,6 @@
 module ComicHelper
+  include ActsAsTaggableOn::TagsHelper
+
   ALLOWED_DIRECTIONS = [:left, :right]
 
   def link_for_comic(comic, text)

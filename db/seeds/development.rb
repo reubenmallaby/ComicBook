@@ -5,6 +5,7 @@ comic = Comic.new(
   is_published: true
 )
 comic.image.attach io: File.open(Rails.root.join('db/images/default.png')), filename: "default.png"
+comic.tag_list.add("funny", "art", "painting", "fave")
 comic.save!
 
 comic = Comic.new(
@@ -14,6 +15,7 @@ comic = Comic.new(
   is_published: true
 )
 comic.image.attach io: File.open(Rails.root.join('db/images/default.png')), filename: "default.png"
+comic.tag_list.add("art", "serious", "painting", "fave")
 comic.save!
 
 comic = Comic.new(
@@ -23,6 +25,7 @@ comic = Comic.new(
   is_published: true
 )
 comic.image.attach io: File.open(Rails.root.join('db/images/default.png')), filename: "default.png"
+comic.tag_list.add("art", "serious")
 comic.save!
 
 comic = Comic.new(
@@ -32,6 +35,7 @@ comic = Comic.new(
   is_published: true
 )
 comic.image.attach io: File.open(Rails.root.join('db/images/default.png')), filename: "default.png"
+comic.tag_list.add("funny", "fave")
 comic.save!
 
 def create_dev_user(name, admin: false)
@@ -47,3 +51,4 @@ def create_dev_user(name, admin: false)
 end
 %w[ArtistOne Artist2 AssistantOne].each {|name| create_dev_user(name, admin: true) }
 %w[UserOne UserTwo UserThree UserFour UserFive].each { |name| create_dev_user(name) }
+

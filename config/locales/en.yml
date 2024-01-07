@@ -109,5 +109,10 @@ en:
       resend: "Send me instructions"
 
   nav:
+    manage: "Manage"
     profile: "My profile"
     sign_out: "Sign out"
+
+  tags:
+    title: "Tags"
+    tagged_title: "Tagged with"
