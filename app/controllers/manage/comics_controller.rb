@@ -12,6 +12,7 @@ class Manage::ComicsController < Manage::BaseController
     @years = Comic.years
 
     @months = Comic.months_for_year @year
+    @tags = Comic.tag_counts_on(:tags)
   end
 
   def index_month
@@ -23,6 +24,7 @@ class Manage::ComicsController < Manage::BaseController
 
     start_date = DateTime.new @year, @month, 1
     @comics = Comic.where(publish_date: start_date.beginning_of_month..start_date.end_of_month).order(publish_date: :desc)
+    @tags = Comic.tag_counts_on(:tags)
   end
 
   def new
@@ -30,7 +32,7 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def show
-
+    @tags = Comic.tag_counts_on(:tags)
   end
 
   def show_by_date
@@ -41,6 +43,7 @@ class Manage::ComicsController < Manage::BaseController
 
     start_date = @comic.publish_date
     @comics = Comic.where(publish_date: start_date.beginning_of_month..start_date.end_of_month).order(publish_date: :desc)
+    @tags = Comic.tag_counts_on(:tags)
   end
 
   def edit

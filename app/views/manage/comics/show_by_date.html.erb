@@ -1,1 +1,2 @@
-<%= render @comic || "no_comic" %>
+<%= render "manage/shared/comic" unless @comic.blank? %>
+<%= render "manage/shared/no_comic" if @comic.blank? %>

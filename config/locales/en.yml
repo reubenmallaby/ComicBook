@@ -63,6 +63,7 @@ en:
     title_manage_for: "Manage Comics for"
     title_for: "Comics for"
     go_to_comic: "Go to comic"
+    tag_list: "Tagged"
 
   devise:
     sign_in:

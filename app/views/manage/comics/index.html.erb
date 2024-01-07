@@ -9,17 +9,10 @@
   </div>
 
   <div class="spacer"></div>
-  <%= render "side_view_calendar" %>
+  <%= render "manage/shared/side_view_calendar" %>
   <div class="spacer"></div>
 
-  <div class="tag-cloud">
-    <div class="title"><%= I18n.t("tags.title") %></div>
-    <div class="tags">
-      <% tag_cloud(@tags, %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
-        <%= link_to tag.name, manage_tagged_path(tag.name), :class => "tag #{css_class}" %>
-      <% end %>
-    </div>
-  </div>
+  <%= render "manage/shared/tag_cloud" %>
 <% end %>
 
 <h1><%= I18n.t("comic.title_manage_for") %></h1>
