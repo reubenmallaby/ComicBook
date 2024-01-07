@@ -1,9 +1,7 @@
-<%# add navigation links to this file %>
 <%= link_to "Archive", root_path %>
 <%= link_to "Shop", root_path %>
 <%= link_to "About", root_path %>
 <%= link_to "Log in", new_user_session_path, class: "right" unless user_signed_in? %>
-<%#= link_to current_user.name, user_path, class: "right" if user_signed_in? %>
 
 <div class="spacer"></div>
 

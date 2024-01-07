@@ -501,7 +501,6 @@ template {
         margin: 0 10px;
         color: #000000;
         text-decoration: none;
-        text-shadow: 0 1px 0 white;
         box-sizing: border-box;
 
         &.spacer {
@@ -523,9 +522,12 @@ template {
 
           &:hover .dropdown-content {
             display: block;
+            border-left: 1px solid #3377FF;
+            border-bottom: 1px solid #3377FF;
+            border-right: 1px solid #3377FF;
           }
           &:hover .dropdown-button {
-            background-color: #468847;
+            background-color: #3377FF;
             color: #FFFFFF;
           }
 

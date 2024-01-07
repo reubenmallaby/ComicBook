@@ -11,12 +11,12 @@
   <body>
     <div class="page-wrapper">
       <header class="page-header">
-        <%= render 'layouts/navigation' %>
+        <%= render 'shared/navigation' %>
       </header>
       <main role="main" class="page-main">
         <div class="left-side"><%= render "side_view_calendar" %></div>
         <div class="container">
-          <%= render 'layouts/messages' %>
+          <%= render 'shared/messages' %>
           <%= yield %>
         </div>
         <div class="right-side"><%= content_for?(:right_side) ? yield(:right_side) : "" %></div>

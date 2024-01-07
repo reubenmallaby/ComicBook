@@ -12,12 +12,10 @@
 </head>
 <body>
 <div class="page-wrapper">
-  <header class="page-header">
-    <%#= render 'layouts/navigation' %>
-  </header>
+  <header class="page-header"></header>
   <main role="main" class="page-main">
     <div class="container">
-      <%= render 'layouts/messages' %>
+      <%= render 'shared/messages' %>
       <%= yield %>
     </div>
   </main>

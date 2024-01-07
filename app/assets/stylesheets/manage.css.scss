@@ -9,11 +9,26 @@
 
       a {
         color: #FFFFFF;
-        text-shadow: none;
         box-sizing: border-box;
 
         &:hover {
           background-color: #730E15;
+        }
+      }
+
+      .dropdown {
+        .dropdown-button {
+          color: #FFFFFF;
+        }
+
+        &:hover .dropdown-content {
+          border-left: 1px solid #730E15;
+          border-bottom: 1px solid #730E15;
+          border-right: 1px solid #730E15;
+        }
+
+        &:hover .dropdown-button {
+          background-color: #730E15 !important;
         }
       }
     }
