@@ -5,6 +5,7 @@ class Manage::ComicsController < Manage::BaseController
   def index
     @years = Comic.years
     @tags = Comic.tag_counts_on(:tags)
+    @current_date = DateTime.new
   end
 
   def index_year
