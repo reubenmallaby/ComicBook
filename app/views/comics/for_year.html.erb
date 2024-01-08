@@ -1,11 +1,11 @@
-<h1><%= I18n.t("comic.title_for") %> <%= @year %></h1>
+<h1><%= I18n.t("comic.title_for") %> <%= @current_date.year %></h1>
 <div class="overview">
   <div class="comics">
     <% @months.each do |month| %>
       <% m = month["m"].to_i || 0 %>
       <% c = month["c"] %>
       <% text = "#{I18n.t("date.month_names")[m]} (#{c})" %>
-      <div class="comic"><%= link_to text, comics_for_month_path(year: @year, month: m), class: "link" %></div>
+      <div class="comic"><%= link_to text, comics_for_month_path(year: @current_date.year, month: m), class: "link" %></div>
     <% end %>
   </div>
 </div>

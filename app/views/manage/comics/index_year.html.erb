@@ -1,28 +1,31 @@
 <% content_for :left_side do %>
-  <div class="actions">
-    <div class="action">
-      <%= link_to manage_new_comic_path, class: "new" do %>
-        <i class='fa fa-square-plus' aria-hidden='true'></i>
-        <%= I18n.t("comic.new") %>
-      <% end %>
+  <div class="left-side">
+    <div class="actions">
+      <div class="action">
+        <%= link_to manage_new_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
     </div>
+
+    <div class="spacer"></div>
+    <%= render "manage/shared/side_view_calendar" %>
+    <div class="spacer"></div>
+
+    <%= render "manage/shared/tag_cloud" %>
   </div>
-
-  <div class="spacer"></div>
-  <%= render "manage/shared/side_view_calendar" %>
-  <div class="spacer"></div>
-
-  <%= render "manage/shared/tag_cloud" %>
 <% end %>
 
-<h1><%= I18n.t("comic.title_manage_for") %> <%= @year %></h1>
+
+<h1><%= I18n.t("comic.title_manage_for") %> <%= @current_date.year %></h1>
 <div class="overview">
   <div class="comics">
     <% @months.each do |month| %>
       <% m = month["m"].to_i || 0 %>
       <% c = month["c"] %>
       <% text = "#{I18n.t("date.month_names")[m]} (#{c})" %>
-      <div class="comic"><%= link_to text, manage_comics_for_month_path(year: @year, month: m), class: "link" %></div>
+      <div class="comic"><%= link_to text, manage_comics_for_month_path(year: @current_date.year, month: m), class: "link" %></div>
     <% end %>
   </div>
 </div>

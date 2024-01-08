@@ -8,27 +8,30 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def index_year
-    @year = params[:year].to_i  || 2000
+    year = params[:year].to_i  || 2000
     @years = Comic.years
+    @current_date = DateTime.new(year, 1, 1)
 
-    @months = Comic.months_for_year @year
+    @months = Comic.months_for_year year
     @tags = Comic.tag_counts_on(:tags)
   end
 
   def index_month
-    @year = params[:year].to_i  || 2000
+    year = params[:year].to_i  || 2000
     @years = Comic.years
 
-    @month = (params[:month]    || 1).to_i
+    month = (params[:month]    || 1).to_i
+    @current_date = DateTime.new(year, month, 1)
+
     @months = Comic.months_for_year @year
 
-    start_date = DateTime.new @year, @month, 1
-    @comics = Comic.where(publish_date: start_date.beginning_of_month..start_date.end_of_month).order(publish_date: :desc)
+    @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
     @tags = Comic.tag_counts_on(:tags)
   end
 
   def new
     @comic = Comic.new
+    @known_tags = known_tags
   end
 
   def show
@@ -38,16 +41,14 @@ class Manage::ComicsController < Manage::BaseController
   def show_by_date
     @years = Comic.years
 
-    @month = (params[:month]    || 1).to_i
-    @months = Comic.months_for_year @year
+    @months = Comic.months_for_year @current_date.year
 
-    start_date = @comic.publish_date
-    @comics = Comic.where(publish_date: start_date.beginning_of_month..start_date.end_of_month).order(publish_date: :desc)
+    @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
     @tags = Comic.tag_counts_on(:tags)
   end
 
   def edit
-
+    @known_tags = "'#{known_tags.join("', '")}'"
   end
 
   def create
@@ -66,8 +67,8 @@ class Manage::ComicsController < Manage::BaseController
   def update
     if @comic.update comic_params
       flash[:notice]= I18n.t("comic.updated_ok")
-      date = @comic.publish_date
-      redirect_to manage_comimc_url(date.year, date.month, date.day)
+
+      redirect_to manage_comimc_url(@current_date.year, @current_date.month, @current_date.day)
     else
       flash[:alert]= I18n.t("comic.updated_error")
       render :edit
@@ -100,24 +101,30 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   private
+  def known_tags
+    ActsAsTaggableOn::Tag.all.order(name: :asc)
+  end
+
   def get_comic
-    @year = params[:year].to_i  || 2000
-    @month = (params[:month]    || 1).to_i
-    @day = (params[:day]        || 1).to_i
+    year = params[:year].to_i  || 2000
+    month = (params[:month]    || 1).to_i
+    day = (params[:day]        || 1).to_i
+    @current_date = DateTime.new(year, month, day)
 
     begin
-      @date = DateTime.new @year, @month, @day
+      @date = DateTime.new year, month, day
     rescue
       raise ActionController::RoutingError.new('Invalid date')
     end
 
-    @comic = Comic.find_by_date @date
+    @comic = Comic.find_by_date @current_date
 
     not_found if @comic.blank?
   end
 
   def get_comic_by_id
     @comic = Comic.find params[:id]
+    @current_date = @comic.publish_date
 
     raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?
   end

@@ -1,19 +1,22 @@
 <% content_for :left_side do %>
-  <div class="actions">
-    <div class="action">
-      <%= link_to manage_new_comic_path, class: "new" do %>
-        <i class='fa fa-square-plus' aria-hidden='true'></i>
-        <%= I18n.t("comic.new") %>
-      <% end %>
+  <div class="left-side">
+    <div class="actions">
+      <div class="action">
+        <%= link_to manage_new_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
     </div>
+
+    <div class="spacer"></div>
+    <%= render "manage/shared/side_view_calendar" %>
+    <div class="spacer"></div>
+
+    <%= render "manage/shared/tag_cloud" %>
   </div>
-
-  <div class="spacer"></div>
-  <%= render "manage/shared/side_view_calendar" %>
-  <div class="spacer"></div>
-
-  <%= render "manage/shared/tag_cloud" %>
 <% end %>
+
 
 <div class="comic">
   <div class="comic-header">

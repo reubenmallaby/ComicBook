@@ -16,7 +16,7 @@
         <%= render 'manage/shared/manage_navigation' %>
       </header>
       <main role="main" class="page-main">
-        <div class="left-side"><%= content_for?(:left_side) ? yield(:left_side) : "" %></div>
+        <%= content_for?(:left_side) ? yield(:left_side) : "" %>
         <div class="container">
           <%= render 'shared/messages' %>
           <%= yield %>

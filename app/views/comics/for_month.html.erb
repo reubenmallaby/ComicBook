@@ -1,4 +1,4 @@
-<h1><%= I18n.t("comic.title_for") %> <%= I18n.t("date.month_names")[@month] %> <%= @year %></h1>
+<h1><%= I18n.t("comic.title_for") %> <%= I18n.t("date.month_names")[@current_date.month] %> <%= @current_date.year %></h1>
 <div class="overview">
   <div class="comics">
     <% @comics.each do |comic| %>

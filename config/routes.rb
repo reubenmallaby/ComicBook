@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     get 'comics'                        => "comics#index",        as: :comics
     post 'comics'                       => "comics#create"
+    patch "comics/:id"                   => "comics#update"
     get 'tagged/:tag'                   => "comics#tagged",       as: :tagged
 
     get 'comics/new'                    => "comics#new",          as: :new_comic
@@ -27,7 +28,6 @@ Rails.application.routes.draw do
     get "comic/:year/:month/:day"       => "comics#show_by_date", as: :comic
     get "comic/:year/:month/:day/edit"  => "comics#edit",         as: :edit_comic
 
-    patch "comic/:id"                   => "comics#update",       as: :update_comic
     patch "comic/:year/:month/:day/publish" => "comics#publish",  as: :publish_comic
 
     delete "comic/:year/:month/:day"    => "comics#destroy",      as: :delete_comic

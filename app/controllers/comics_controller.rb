@@ -1,10 +1,10 @@
 class ComicsController < ApplicationController
   def index
-    @date = DateTime.new
+    @current_date = DateTime.new
     @comic = Comic.latest
     
     @first    = Comic.oldest
-    @previous = Comic.previous(@date)
+    @previous = Comic.previous(@current_date)
     @next     = nil
     @latest   = nil
 
@@ -12,20 +12,21 @@ class ComicsController < ApplicationController
   end
 
   def show
-    @year  = params[:year].to_i
-    @month = params[:month].to_i
-    @day   = params[:day].to_i
+    year  = params[:year].to_i
+    month = params[:month].to_i
+    day   = params[:day].to_i
+    @current_date = DateTime.new(year, month, day)
 
     begin
-      @date = DateTime.new @year, @month, @day
+      @date = DateTime.new year, month, day
     rescue
       raise ActionController::RoutingError.new('Invalid date')
     end
 
     @years = Comic.years
-    @months = Comic.months_for_year @year
+    @months = Comic.months_for_year year
 
-    @comics = Comic.where(publish_date: @date.beginning_of_month..@date.end_of_month).order(publish_date: :desc)
+    @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
 
     @comic = Comic.find_by_published_date @date
     @years = Comic.years
@@ -38,20 +39,21 @@ class ComicsController < ApplicationController
   end
 
   def for_year
-    @year = params[:year].to_i  || 2000
-    @years = Comic.years
+    year = params[:year].to_i  || 2000
+    @current_date = DateTime.new(year, 1, 1)
 
-    @months = Comic.months_for_year @year
+    @years = Comic.years
+    @months = Comic.months_for_year year
   end
 
   def for_month
-    @year = params[:year].to_i  || 2000
+    year = params[:year].to_i  || 2000
+    month = (params[:month]    || 1).to_i
+    @current_date = DateTime.new(year, month, 1)
+
     @years = Comic.years
+    @months = Comic.months_for_year year
 
-    @month = (params[:month]    || 1).to_i
-    @months = Comic.months_for_year @year
-
-    start_date = DateTime.new @year, @month, 1
-    @comics = Comic.where(publish_date: start_date.beginning_of_month..start_date.end_of_month).order(publish_date: :desc)
+    @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
   end
 end

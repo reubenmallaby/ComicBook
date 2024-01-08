@@ -30,43 +30,26 @@
         box-sizing: border-box;
         padding: 0 10px;
 
-        &.form-file {
-          width: 100%;
+        .image-preview {
+          display: flex;
           flex-direction: column;
-          max-height: 200px;
+          width: 80%;
+          height: 200px;
           box-sizing: border-box;
+          border: 1px solid transparent;
+          cursor: pointer;
 
-          &.image {
-            height: 180px;
-          }
-
-          input[type=file] {
-            display: none;
-          }
-
-          .form-label {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            box-sizing: border-box;
-
-            label {
-              display: inline-block;
-              width: 100%;
-              cursor: pointer;
-              box-sizing: border-box;
+          .image-link {
+            padding: 10px;
+            &:hover {
+              background-color: #730E15;
+              color: #FFFFFF;
             }
           }
+        }
 
-          .image-preview {
-            width: 80%;
-            max-width: 600px;
-            height: 140px;
-            margin: 5px;
-            box-sizing: border-box;
-            border: 1px solid transparent;
-            border-radius: 20px;
-          }
+        .form-hidden {
+          display: none;
         }
 
         .form-label {
@@ -102,6 +85,48 @@
 
           textarea {
             height: 120px;
+          }
+
+          &.tag-cloud {
+            display: flex;
+            flex-direction: column;
+
+            .tag-new {
+              max-width: 200px;
+            }
+
+            .tags {
+              margin-bottom: 10px;
+
+              .tag {
+                display: flex;
+                padding: 10px 15px;
+                flex-direction: row;
+                height: 16px;
+                line-height: 16px;
+                color: #000000;
+
+                i {
+                  visibility: hidden;
+                  margin-left: 10px;
+
+                  &.closeable {
+                    cursor: pointer;
+                    justify-content: space-between;
+                  }
+                }
+
+                &:hover {
+                  color: #FFFFFF;
+
+                  i {
+                    visibility: visible;
+                    color: #FFFFFF;
+                  }
+                }
+
+              }
+            }
           }
         }
       }
