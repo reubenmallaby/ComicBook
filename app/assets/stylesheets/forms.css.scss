@@ -100,11 +100,12 @@
 
               .tag {
                 display: flex;
-                padding: 10px 15px;
+                padding: 5px 10px;
                 flex-direction: row;
                 height: 16px;
-                line-height: 16px;
+                line-height: 14px;
                 color: #000000;
+                border-radius: 5px;
 
                 i {
                   visibility: hidden;

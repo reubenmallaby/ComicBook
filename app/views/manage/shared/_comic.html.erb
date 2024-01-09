@@ -2,7 +2,7 @@
   <div class="left-side">
     <div class="actions">
       <div class="action">
-        <%= link_to manage_new_comic_path, class: "new" do %>
+        <%= link_to new_manage_comic_path, class: "new" do %>
           <i class='fa fa-square-plus' aria-hidden='true'></i>
           <%= I18n.t("comic.new") %>
         <% end %>
@@ -33,17 +33,14 @@
   </div>
 
   <div class="comic-nav">
-    <% d = @comic.publish_date %>
-    <%= link_to manage_edit_comic_path(d.year, d.month, d.day), class: "action link edit" do %>
+    <%= link_to edit_manage_comic_path(@comic), class: "action link edit" do %>
       <i class='fa fa-pen-to-square' aria-hidden='true'></i>
       <%= I18n.t("edit") %>
     <% end %>
-    <%= link_to manage_publish_comic_path(d.year, d.month, d.day), class: "action link publish", title: 'Publish/hide' do %>
-      <%= published_icon(@comic) %>
-      <%= @comic.is_published? ? I18n.t("hide") : I18n.t("publish") %>
-    <% end %>
+
     <div class="spacer"></div>
-    <%= link_to manage_delete_comic_path(@comic), method: :delete, class: "action link delete" do %>
+
+    <%= link_to manage_comics_path(@comic), method: :delete, class: "action link delete" do %>
       <i class='fa fa-trash' aria-hidden='true'></i>
       <%= I18n.t("delete") %>
     <% end %>

@@ -1,10 +1,12 @@
 <% content_for :left_side do %>
-  <div class="actions">
-    <div class="action">
-      <%= link_to manage_new_comic_path, class: "new" do %>
-        <i class='fa fa-square-plus' aria-hidden='true'></i>
-        <%= I18n.t("comic.new") %>
-      <% end %>
+  <div class="left-side">
+    <div class="actions">
+      <div class="action">
+        <%= link_to new_manage_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
@@ -15,12 +17,18 @@
     <% @comics.each do |comic| %>
       <div class="comic">
         <% d = comic.publish_date %>
-        <%= link_to manage_comic_path(d.year, d.month, d.day), class: "link", title: I18n.t("comic.go_to_comic") do %>
+        <%= link_to manage_comic_show_by_date_path(d.year, d.month, d.day), class: "link", title: I18n.t("comic.go_to_comic") do %>
           <div class="date"><%= d.year %></div>
           <div class="date"><%= I18n.t("date.month_names")[d.month] %></div>
           <div class="date"><%= d.day %></div>
           <div class="title"><%= comic.title %></div>
         <% end %>
+
+        <div class="actions">
+          <div class="button publish"><%= link_to_comic_publish_path(comic) %></div>
+          <div class="button edit"><%= link_to_comic_edit_path(comic) %></div>
+          <div class="button delete"><%= link_to_comic_delete_path(comic) %></div>
+        </div>
       </div>
     <% end %>
   </div>

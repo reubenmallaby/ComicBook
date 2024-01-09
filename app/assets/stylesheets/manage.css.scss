@@ -112,13 +112,11 @@
 
             .actions {
               display: inline-block;
-              width: 100px;
               box-sizing: border-box;
-              height: 24px;
 
               .button {
                 display: inline-block;
-                width: 24px;
+                padding: 4px;
                 text-align: center;
 
                 button, a, a:active, a:visited, a:link {
@@ -133,16 +131,14 @@
                   cursor: pointer;
                 }
 
-                &.publish a:hover {
-                  color: #468847;
-                }
+                &:hover {
+                  background-color: #730E15;
+                  color: #FFFFFF;
 
-                &.edit a:hover {
-                  color: #3377FF;
-                }
-
-                &.delete button:hover {
-                  color: #730E15;
+                  a, button {
+                    background-color: #730E15;
+                    color: #FFFFFF;
+                  }
                 }
               }
             }

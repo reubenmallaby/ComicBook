@@ -2,7 +2,7 @@
   <div class="left-side">
     <div class="actions">
       <div class="action">
-        <%= link_to manage_new_comic_path, class: "new" do %>
+        <%= link_to new_manage_comic_path, class: "new" do %>
           <i class='fa fa-square-plus' aria-hidden='true'></i>
           <%= I18n.t("comic.new") %>
         <% end %>
@@ -24,7 +24,7 @@
     <% @comics.each do |comic| %>
       <div class="comic">
         <% d = comic.publish_date %>
-        <%= link_to manage_comic_path(d.year, d.month, d.day), class: "link", title: I18n.t("comic.go_to_comic") do %>
+        <%= link_to manage_comic_show_by_date_path(d.year, d.month, d.day), class: "link", title: I18n.t("comic.go_to_comic") do %>
           <div class="date"><%= comic.publish_date.day %></div><div class="day"><%= I18n.t("date.day_names")[comic.publish_date.wday] %></div><div class="title"><%= comic.title %></div>
         <% end %>
 

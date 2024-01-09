@@ -1,6 +1,6 @@
 class Manage::ComicsController < Manage::BaseController
-  before_action :get_comic, only: [:show_by_date, :edit, :destroy, :publish]
-  before_action :get_comic_by_id, only: [:update]
+  before_action :get_comic_by_date, only: [:show_by_date]
+  before_action :get_comic, only: [:edit, :update, :destroy, :publish]
 
   def index
     @years = Comic.years
@@ -69,7 +69,7 @@ class Manage::ComicsController < Manage::BaseController
     if @comic.update comic_params
       flash[:notice]= I18n.t("comic.updated_ok")
 
-      redirect_to manage_comimc_url(@current_date.year, @current_date.month, @current_date.day)
+      redirect_to manage_comic_url(@comic)
     else
       flash[:alert]= I18n.t("comic.updated_error")
       render :edit
@@ -79,7 +79,7 @@ class Manage::ComicsController < Manage::BaseController
   def publish
     @comic.is_published = !@comic.is_published
     if @comic.save
-      flash[:notice]= I18n.t("comic.updated_ok")
+      flash[:notice]= @comic.is_published ? I18n.t("comic.published_ok") : I18n.t("comic.hidden_ok")
     else
       flash[:alert]= I18n.t("comic.updated_error")
     end
@@ -106,7 +106,7 @@ class Manage::ComicsController < Manage::BaseController
     ActsAsTaggableOn::Tag.all.order(name: :asc)
   end
 
-  def get_comic
+  def get_comic_by_date
     year = params[:year].to_i  || 2000
     month = (params[:month]    || 1).to_i
     day = (params[:day]        || 1).to_i
@@ -123,7 +123,7 @@ class Manage::ComicsController < Manage::BaseController
     not_found if @comic.blank?
   end
 
-  def get_comic_by_id
+  def get_comic
     @comic = Comic.find params[:id]
     @current_date = @comic.publish_date
 

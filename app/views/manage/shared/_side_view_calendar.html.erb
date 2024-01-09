@@ -28,7 +28,7 @@
                         <% d = comic.publish_date %>
                         <% current_comic = @comic && @comic.publish_date.day == d.day %>
                         <div class="comic">
-                          <%= link_to manage_comic_path(year: @current_date.year, month: @current_date.month, day: d.day), class: current_comic ? 'current' : 'single' do %>
+                          <%= link_to manage_comics_path(comic), class: current_comic ? 'current' : 'single' do %>
                             <div class="date"><%= d.day %></div>
                             <div class="day"><%= I18n.t("date.day_names")[d.wday] %></div>
                           <% end %>

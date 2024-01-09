@@ -33,7 +33,7 @@ module ComicHelper
   def link_to_comic_edit_path(comic)
     date = comic.publish_date
     link_to "",
-            manage_edit_comic_path(date.year, date.month, date.day),
+            edit_manage_comic_path(comic),
             title: I18n.t("edit"),
             class: "fa-regular fa-pen-to-square"
   end
@@ -45,21 +45,20 @@ module ComicHelper
   end
 
   def link_to_comic_publish_path(comic)
-    date = comic.publish_date
     title = comic.is_published ? I18n.t("hide") : I18n.t("publish")
     icon = comic.is_published ? 'check' : 'xmark'
-    link_to "",
-            manage_publish_comic_path(date.year, date.month, date.day),
+    button_to "",
+            manage_publish_comic_path(comic),
+            method: :patch,
             title: title,
             class: "fa-regular fa-calendar-#{icon}"
   end
 
   def link_to_comic_delete_path(comic)
-    date = comic.publish_date
-
     button_to "",
-              manage_delete_comic_path(date.year, date.month, date.day),
-              method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } },
+              manage_comics_path(comic),
+              method: :delete,
+              form: { data: { turbo_confirm: 'Are you sure?' } },
               title: I18n.t("delete"),
               class: "fa-solid fa-trash"
   end

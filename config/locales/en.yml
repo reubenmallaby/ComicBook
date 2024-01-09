@@ -58,6 +58,8 @@ en:
     destroyed_ok: "Comic deleted OK"
     saved_ok: "Comic created"
     updated_ok: "Comic updated"
+    hidden_ok: "Comic unpublished"
+    published_ok: "Comic published"
     saved_error: "Could not save comic"
     updated_error: "Could not update comic"
     title_manage_for: "Manage Comics for"
