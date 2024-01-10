@@ -30,17 +30,28 @@
         box-sizing: border-box;
         padding: 0 10px;
 
+        .image-new {
+          display: flex;
+          flex-direction: column;
+          height: 30px;
+          box-sizing: border-box;
+        }
+
         .image-preview {
           display: flex;
           flex-direction: column;
-          width: 80%;
           height: 200px;
+          width: 200px;
           box-sizing: border-box;
-          border: 1px solid transparent;
           cursor: pointer;
+        }
 
+        .image-preview, .image-new {
           .image-link {
             padding: 10px;
+            width: 200px;
+            text-align: center;
+            box-sizing: border-box;
 
             &:hover {
               background-color: #730E15;

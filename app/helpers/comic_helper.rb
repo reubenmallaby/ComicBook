@@ -72,4 +72,17 @@ module ComicHelper
                 class: "button",
                 id: "#{text}-button"
   end
+
+  def form_comic_image(comic)
+    if comic.persisted?
+      content_tag("div", class: 'image-preview') do
+        image_tag(comic.image, size: "200") +
+        content_tag("div", I18n.t("click_to_change"), class: 'image-link')
+      end
+    else
+      content_tag("div", class: 'image-new') do
+        content_tag("div", I18n.t("click_to_select"), class: 'image-link')
+      end
+    end
+  end
 end

@@ -44,12 +44,7 @@
         <div class="form-input form-file">
           <%= form.file_field :image, class: 'form-hidden' %>
           <%= form.label :image do %>
-            <div id="image_preview" class="image-preview">
-              <%= image_tag @comic.image, height: 200, width: 200 if @comic.persisted? %>
-              <div class="image-link">
-                (<%= @comic.persisted? ? I18n.t("click_to_change") : I18n.t("click_to_select") %>)
-              </div>
-            </div>
+            <%= form_comic_image(@comic) %>
           <% end %>
         </div>
       </div>
@@ -154,6 +149,8 @@
             event.preventDefault();
         }
     });
+
+
 
     sortTags();
 </script>
