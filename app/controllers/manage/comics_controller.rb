@@ -32,7 +32,7 @@ class Manage::ComicsController < Manage::BaseController
 
   def new
     @comic = Comic.new
-    @known_tags = known_tags
+    @known_tags = "'#{known_tags.join("', '")}'"
   end
 
   def show
@@ -102,21 +102,12 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   private
-  def known_tags
-    ActsAsTaggableOn::Tag.all.order(name: :asc)
-  end
 
   def get_comic_by_date
     year = params[:year].to_i  || 2000
     month = (params[:month]    || 1).to_i
     day = (params[:day]        || 1).to_i
     @current_date = DateTime.new(year, month, day)
-
-    begin
-      @date = DateTime.new year, month, day
-    rescue
-      raise ActionController::RoutingError.new('Invalid date')
-    end
 
     @comic = Comic.find_by_date @current_date
 
@@ -127,7 +118,7 @@ class Manage::ComicsController < Manage::BaseController
     @comic = Comic.find params[:id]
     @current_date = @comic.publish_date
 
-    raise ActionController::RoutingError.new('Comic Not Found') if @comic.blank?
+    not_found if @comic.blank?
   end
 
   def comic_params
