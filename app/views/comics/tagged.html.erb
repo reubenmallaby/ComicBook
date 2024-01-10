@@ -1,0 +1,13 @@
+<h1><%= I18n.t("comic.title_for_tagged") %> &ldquo;<%= @tag %>&rdquo;</h1>
+<div class="overview">
+  <div class="comics">
+    <% @comics.each do |comic| %>
+      <div class="comic">
+        <% d = comic.publish_date %>
+        <%= link_to comic_path(d.year, d.month, d.day), class: "link", title: I18n.t("comic.go_to_comic") do %>
+          <div class="date"><%= comic.publish_date.day %></div><div class="day"><%= I18n.t("date.day_names")[comic.publish_date.wday] %></div><div class="title"><%= comic.title %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

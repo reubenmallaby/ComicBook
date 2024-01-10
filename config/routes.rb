@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get 'comics'                  => "comics#index",     as: :comics
+  get 'comics/tagged/:tag'      => "comics#tagged",    as: :tagged
   get 'comics/:year'            => "comics#for_year",  as: :comics_for_year
   get 'comics/:year/:month'     => "comics#for_month", as: :comics_for_month
   get "comic/:year/:month/:day" => "comics#show",      as: :comic

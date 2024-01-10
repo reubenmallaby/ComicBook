@@ -589,26 +589,34 @@ template {
 .tag-cloud {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 
   .title {
     font-weight: 600;
     text-align: center;
   }
+
   .tags {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 
     .tag {
-      padding: 4px;
-      margin-right: 4px;
+      padding: 8px 5px;
+      margin-right: 5px;
+      border-radius: 5px;
       text-decoration: none;
       color: #000000;
 
       &:hover {
-        background-color: #730E15;
-        color: #FFFFFF;
+        background-color: #3377FF;
+        color: #FFFFFF !important;
       }
+
+      &.tag1 { font-size: 12px; color: #777777; }
+      &.tag2 { font-size: 14px; }
+      &.tag3 { font-size: 16px; color: #3377FF; }
+      &.tag4 { font-size: 20px; color: #730E15; }
     }
   }
 }

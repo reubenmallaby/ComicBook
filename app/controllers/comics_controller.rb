@@ -8,6 +8,7 @@ class ComicsController < ApplicationController
     @next     = nil
     @latest   = nil
 
+    @tags = Comic.tag_counts_on(:tags)
     @years = Comic.years
   end
 
@@ -29,6 +30,7 @@ class ComicsController < ApplicationController
     @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
 
     @comic = Comic.find_by_published_date @date
+    @tags = Comic.tag_counts_on(:tags)
     @years = Comic.years
 
     @first    = Comic.oldest
@@ -42,6 +44,7 @@ class ComicsController < ApplicationController
     year = params[:year].to_i  || 2000
     @current_date = DateTime.new(year, 1, 1)
 
+    @tags = Comic.tag_counts_on(:tags)
     @years = Comic.years
     @months = Comic.months_for_year year
   end
@@ -51,9 +54,20 @@ class ComicsController < ApplicationController
     month = (params[:month]    || 1).to_i
     @current_date = DateTime.new(year, month, 1)
 
+    @tags = Comic.tag_counts_on(:tags)
     @years = Comic.years
     @months = Comic.months_for_year year
 
     @comics = Comic.where(publish_date: @current_date.beginning_of_month..@current_date.end_of_month).order(publish_date: :desc)
+  end
+
+  def tagged
+    @tag = params[:tag]
+    @tags = Comic.tag_counts_on(:tags)
+    @current_date = DateTime.new
+    @years = Comic.years
+    @months = Comic.months_for_year @current_date.year
+    @comics = Comic.tagged_with(@tag).order(publish_date: :desc).limit(10)
+    @max_count = Comic.tagged_with(@tag).count
   end
 end

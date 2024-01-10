@@ -64,6 +64,7 @@ en:
     updated_error: "Could not update comic"
     title_manage_for: "Manage Comics for"
     title_for: "Comics for"
+    title_for_tagged: "Comics tagged with"
     go_to_comic: "Go to comic"
     tag_list: "Tagged"
 

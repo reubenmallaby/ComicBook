@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<h1><%= @max_count %> <%= I18n.t("tags.tagged_title") %> <%= @tag %></h1>
+<h1><%= I18n.t("comic.title_for_tagged") %> &ldquo;<%= @tag %>&rdquo;</h1>
 <div class="overview">
   <div class="comics">
     <% @comics.each do |comic| %>
