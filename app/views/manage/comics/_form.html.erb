@@ -64,19 +64,23 @@
             <% end %>
           </div>
 
-          <input type="text" class="form-input tag-new" id="newTag" />
-        </div>
-      </div>
+          <fieldset class="form-input-icon">
+            <i class="fa-solid fa-tags" title="<%= I18n.t("comic.add_tag") %>"></i>
+            <input type="text" class="form-input tag-new" id="newTag" />
+            <i class="icon-question fa-regular fa-circle-question" title="<%= I18n.t("comic.add_tag_help") %>"></i>
+          </fieldset>
 
-      <div class="form-footer">
-        <div class="action form-cancel">
-          <%= link_to :back do %>
-            <i class='fa fa-chevron-left' aria-hidden='true'></i> <%= I18n.t("back") %>
-          <% end %>
         </div>
-        <div class="spacer"></div>
-        <div class="action submit"><%= manager_button(form, text: 'update', icon: 'chevron-right', dir: 'left') %></div>
       </div>
+    </div>
+    <div class="form-footer">
+      <div class="action form-cancel">
+        <%= link_to :back do %>
+          <i class='fa fa-chevron-left' aria-hidden='true'></i> <%= I18n.t("back") %>
+        <% end %>
+      </div>
+      <div class="spacer"></div>
+      <div class="action submit"><%= manager_button(form, text: 'update', icon: 'chevron-right', dir: 'left') %></div>
     </div>
   <% end %>
 </div>

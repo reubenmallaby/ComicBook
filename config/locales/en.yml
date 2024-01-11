@@ -67,6 +67,8 @@ en:
     title_for_tagged: "Comics tagged with"
     go_to_comic: "Go to comic"
     tag_list: "Tagged"
+    add_tag: "Add tag"
+    add_tag_help: "Type tag name and press space"
 
   devise:
     sign_in:
