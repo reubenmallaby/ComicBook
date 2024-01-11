@@ -8,11 +8,11 @@ class Comic < ApplicationRecord
   validates :publish_date, uniqueness: true 
   validates :image, presence: true
 
-  scope :latest, -> { where(is_published: true).order(publish_date: :desc).limit(1).first }
-  scope :oldest, -> { where(is_published: true).order(publish_date: :asc).limit(1).first }
+  scope :latest, -> { where(is_published: true).order(publish_date: :desc).first }
+  scope :oldest, -> { where(is_published: true).order(publish_date: :asc).first }
 
-  scope :previous, ->(date) { where("comics.publish_date < ?", date).latest }
-  scope :next, ->(date) { where("comics.publish_date > ?", date).oldest }
+  scope :previous, ->(date) { where('publish_date < ?', date).where(is_published: true).order(publish_date: :asc).limit(1) }
+  scope :next, ->(date) { where('publish_date > ?', date).where(is_published: true).order(publish_date: :desc).limit(1) }
 
   def self.years
     sql = "SELECT DATE_PART('YEAR', publish_date)::int AS y, COUNT(id) AS c FROM comics GROUP BY y ORDER BY y DESC"
