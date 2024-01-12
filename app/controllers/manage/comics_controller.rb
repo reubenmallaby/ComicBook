@@ -32,7 +32,7 @@ class Manage::ComicsController < Manage::BaseController
 
   def new
     @comic = Comic.new
-    @known_tags = "'#{known_tags.join("', '")}'"
+    @known_tags = known_tags
   end
 
   def show
@@ -49,7 +49,7 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def edit
-    @known_tags = "'#{known_tags.join("', '")}'"
+    @known_tags = known_tags
   end
 
   def create

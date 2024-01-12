@@ -65,10 +65,18 @@
           </div>
 
           <fieldset class="form-input-icon">
-            <i class="fa-solid fa-tags" title="<%= I18n.t("comic.add_tag") %>"></i>
-            <input type="text" class="form-input tag-new" id="newTag" />
+            <!--i class="fa-solid fa-tags" title="<%= I18n.t("comic.add_tag") %>"></i-->
+            <input type="text" class="form-input tag-new" id="newTag" autocomplete="off" />
             <i class="icon-question fa-regular fa-circle-question" title="<%= I18n.t("comic.add_tag_help") %>"></i>
           </fieldset>
+
+          <div id="autocomplete_tags">
+            <% @known_tags.each do |tag| %>
+              <div id="auto_tag_<%= tag.name %>" class="auto-tag hidden" data-tag="<%= tag.name %>">
+                <%= tag.name %>
+              </div>
+            <% end %>
+          </div>
 
         </div>
       </div>
@@ -85,9 +93,12 @@
   <% end %>
 </div>
 
+
 <script>
-    const known_tags = [<%= @known_tags.html_safe %>];
+    const known_tags = ['<%= @known_tags.join("', '").html_safe %>'];
     const comic_tags = <%= @comic.tag_list.to_json.html_safe %>;
+    let available_tags = known_tags.filter(t => !comic_tags.includes(t));
+
     const newTagInput = document.getElementById('newTag');
     const current_tag_list = document.getElementById('comic_tag_list');
     const tags = document.getElementById('tags');
@@ -105,22 +116,22 @@
     }
 
     function buildTag(name) {
-      let tag_div = document.createElement("div");
-      tag_div.className = "tag";
-      tag_div.id = "tag_" + name;
+        let tag_div = document.createElement("div");
+        tag_div.className = "tag";
+        tag_div.id = "tag_" + name;
 
-      let tag_name = document.createElement("div");
-      tag_name.className = "tag_name";
-      tag_name.innerText = name;
+        let tag_name = document.createElement("div");
+        tag_name.className = "tag_name";
+        tag_name.innerText = name;
 
-      let i = document.createElement("i");
-      i.className = "fa-solid fa-xmark closeable";
-      i.onclick = function() { removeTag(name) };
+        let i = document.createElement("i");
+        i.className = "fa-solid fa-xmark closeable";
+        i.onclick = function() { removeTag(name) };
 
-      tag_div.append(tag_name);
-      tag_div.append(i);
+        tag_div.append(tag_name);
+        tag_div.append(i);
 
-      tags.append(tag_div);
+        tags.append(tag_div);
     }
 
     function tagFound(name) {
@@ -129,12 +140,18 @@
     }
 
     function addTag(name) {
-      if (!tagFound(name)) {
-          comic_tags.push(name);
-          buildTag(name);
-          sortTags();
-      }
-      current_tag_list.value = comic_tags.join(',');
+        if (name.trim() === '') {
+            return;
+        }
+        if (!tagFound(name)) {
+            comic_tags.push(name);
+            buildTag(name);
+            sortTags();
+        }
+        current_tag_list.value = comic_tags.join(',');
+        newTagInput.value = '';
+          available_tags.splice(available_tags.indexOf(name), 1);
+        hideAutocomplete();
     }
 
     function removeTag(name) {
@@ -145,16 +162,46 @@
         }
     }
 
-    newTagInput.addEventListener('keypress', function(event) {
-        const key = event.code;
+    newTagInput.addEventListener('keypress', function(e) {
+        const key = e.code;
+
         if ((key === 'Space') || (key === 'Enter')) {
             addTag(newTagInput.value);
-            newTagInput.value = '';
-            event.preventDefault();
+            e.preventDefault();
+        } else if (key === 'Down') {
+            // current_focus--;
+        } else if (key === 'Up') {
+            // current_focus++;
         }
     });
 
+    newTagInput.addEventListener('keyup', function(e) {
+        if ((e.code === `Key${e.key.toUpperCase()}`) || (e.code === 'Backspace') || (e.code === 'Delete')) {
+            filterAutocomplete(newTagInput.value);
+        }
+    });
 
+    function hideAutocomplete() {
+        document.querySelectorAll('.auto-tag').forEach(t => {
+            t.classList.add('hidden');
+        } );
+    }
+
+    function filterAutocomplete(filter) {
+        hideAutocomplete();
+        if (!filter) return;
+        let filteredTags = available_tags.filter(t => t.includes(filter));
+        filteredTags.forEach(t => {
+            let el = document.getElementById('auto_tag_' + t);
+            el.classList.remove('hidden');
+        });
+    }
+
+    document.querySelectorAll('.auto-tag').forEach(el => {
+        el.addEventListener('click', function(e) {
+            addTag(el.dataset.tag);
+        });
+    });
 
     sortTags();
 </script>

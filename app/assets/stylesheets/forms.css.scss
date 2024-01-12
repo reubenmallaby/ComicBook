@@ -80,6 +80,7 @@
           .form-input-icon {
             border: 0;
             padding: 0;
+            margin: 0;
           }
 
           input, textarea {
@@ -220,6 +221,31 @@
             }
           }
         }
+      }
+    }
+  }
+
+  #autocomplete_tags {
+    width: 200px;
+    position: relative;
+    border: 1px solid #777777;
+    box-sizing: border-box;
+    top: -1px;
+
+    .auto-tag {
+      height: 28px;
+      line-height: 18px;
+      box-sizing: border-box;
+      border-left: 4px solid transparent;
+      padding: 5px;
+
+      &:hover {
+        background-color: #DADADA;
+        border-left-color: #730E15;;
+      }
+
+      &.hidden {
+        display: none;
       }
     }
   }
