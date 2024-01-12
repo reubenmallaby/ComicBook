@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'comics/:year/:month'     => "comics#for_month", as: :comics_for_month
   get "comic/:year/:month/:day" => "comics#show",      as: :comic
 
+  resources :books, only: [:index, :show]
+
   get "user" => "users#show"
 
   namespace :manage do
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
     get "comic/:year/:month/:day"    => "comics#show_by_date", as: :comic_show_by_date
     patch "comic/:id/publish"        => "comics#publish",      as: :publish_comic
     resources :comics
+    resources :books
   end
 
   # Defines the root path route ("/")

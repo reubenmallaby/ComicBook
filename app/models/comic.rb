@@ -2,6 +2,7 @@ class Comic < ApplicationRecord
   acts_as_taggable_on :tags
 
   has_one_attached :image
+  belongs_to :book
 
   validates :title, presence: true
   validates :description, presence: true

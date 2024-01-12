@@ -223,14 +223,14 @@ template {
           padding: 4px;
         }
 
-        .years, .months, .comics {
+        .years, .months, .comics, .books {
           display: flex;
           flex-direction: column;
           margin-bottom: 4px;
           box-sizing: border-box;
           padding: 0;
 
-          .year, .month, .comic {
+          .year, .month, .comic, .book {
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
@@ -269,7 +269,7 @@ template {
             }
           }
 
-          .comic {
+          .comic, .book {
             padding: 0;
 
             a {
@@ -299,7 +299,7 @@ template {
       margin: 10px;
       border: 1px solid #37F;
 
-      .comic {
+      .comic, .book {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -409,13 +409,13 @@ template {
         box-sizing: border-box;
         background-color: #FFFFFF;
 
-        .comics {
+        .comics, .books {
           display: flex;
           flex-direction: column;
           padding: 0;
           margin: 0;
 
-          .comic {
+          .comic, .book {
             margin: 0;
             padding: 0;
             width: 100%;

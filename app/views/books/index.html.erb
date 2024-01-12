@@ -1,0 +1,12 @@
+
+<h1><%= I18n.t("books.title") %></h1>
+<div class="overview index">
+  <div class="books">
+    <% @books.each do |book| %>
+      <div class="book">
+        <%= link_to book.title, book_path(book), class: "link" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

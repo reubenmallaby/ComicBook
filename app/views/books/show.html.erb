@@ -1,0 +1,18 @@
+<h1><%= @book.title %></h1>
+<p><%= @book.description %></p>
+
+<div class="overview index">
+  <div class="books">
+    <% @book.comics.each do |comic| %>
+      <div class="book">
+        <% d = comic.publish_date %>
+        <%= link_to comic_path(d.year, d.month, d.day), class: 'link' do %>
+          <div class="date"><%= d.year %></div>
+          <div class="day"><%= I18n.t("date.month_names")[d.month] %></div>
+          <div class="date"><%= d.day %></div>
+          <div class="title"><%= comic.title %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

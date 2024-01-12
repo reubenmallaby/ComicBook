@@ -33,6 +33,7 @@ class Manage::ComicsController < Manage::BaseController
   def new
     @comic = Comic.new
     @known_tags = known_tags
+    @books = Book.order(title: :asc)
   end
 
   def show
@@ -50,6 +51,7 @@ class Manage::ComicsController < Manage::BaseController
 
   def edit
     @known_tags = known_tags
+    @books = Book.order(title: :asc)
   end
 
   def create
@@ -58,7 +60,7 @@ class Manage::ComicsController < Manage::BaseController
     if @comic.save
       flash[:notice]= I18n.t("comic.saved_ok")
       date = @comic.publish_date
-      redirect_to manage_comic_url(date.year, date.month, date.day)
+      redirect_to manage_comic_show_by_date_url(date.year, date.month, date.day)
     else
       flash[:alert]= I18n.t("comic.saved_error")
       render :new
@@ -69,7 +71,8 @@ class Manage::ComicsController < Manage::BaseController
     if @comic.update comic_params
       flash[:notice]= I18n.t("comic.updated_ok")
 
-      redirect_to manage_comic_url(@comic)
+      d = @comic.publish_date
+      redirect_to manage_comic_show_by_date_url(d.year, d.month, d.day)
     else
       flash[:alert]= I18n.t("comic.updated_error")
       render :edit
@@ -122,6 +125,6 @@ class Manage::ComicsController < Manage::BaseController
   end
 
   def comic_params
-    params.require(:comic).permit(:title, :description, :publish_date, :is_published, :image, :tag_list)
+    params.require(:comic).permit(:title, :description, :publish_date, :is_published, :image, :tag_list, :book_id)
   end
 end

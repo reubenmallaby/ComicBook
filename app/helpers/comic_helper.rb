@@ -23,7 +23,9 @@ module ComicHelper
     date = comic.publish_date
     day_name = I18n.t("date.day_names")[date.wday]
     text = by_date ?
-             "<div class='day'>#{date.day}</div><div class='day_name'>#{day_name}</div>".html_safe : comic.title
+             "<div class='day'>#{date.day}</div><div class='day_name'>#{day_name}</div>".html_safe
+             :
+             comic.title
     link_to text,
             manage_comic_path(date.year, date.month, date.day),
             class: comic.is_published? ? 'published' : 'not-published',

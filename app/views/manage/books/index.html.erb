@@ -1,0 +1,31 @@
+<% content_for :left_side do %>
+  <div class="left-side">
+    <div class="actions">
+      <div class="action">
+        <%= link_to new_manage_book_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("book.new") %>
+        <% end %>
+      </div>
+
+      <div class="action">
+        <%= link_to new_manage_comic_path, class: "new" do %>
+          <i class='fa fa-square-plus' aria-hidden='true'></i>
+          <%= I18n.t("comic.new") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h1><%= I18n.t("books.manage_title") %></h1>
+<div class="overview index">
+  <div class="books">
+    <% @books.each do |book| %>
+      <div class="book">
+        <%= link_to book.title, manage_book_path(book), class: "link" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

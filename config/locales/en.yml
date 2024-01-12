@@ -46,8 +46,27 @@ en:
   hide: "Published, click to hide"
   calendar: "Calendar"
 
+  book:
+    saved_ok: "Book saved OK"
+    saved_error: "Error saving book"
+    updated_ok: "Book updated OK"
+    updated_error: "Error updating book"
+    destroyed_ok: "Book destroyed"
+    title: "Title"
+    description: "Description"
+    new: "Add book"
+  books:
+    title: "Books"
+    manage_title: "Manage books"
+    new:
+      title: "New book"
+    edit:
+      title: "Edit book"
+
   comic:
     new: "Add comic"
+    book: "Book"
+    book_prompt: "Select book if required"
     title: "Title"
     title_placeholder: "Name me"
     description: "Description"

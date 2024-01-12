@@ -51,6 +51,15 @@
 
       <div class="form-row">
         <div class="form-label">
+          <%= form.label :book_id, I18n.t("comic.book") %>
+        </div>
+        <div class="form-input form-select">
+          <%= form.collection_select  :book_id, @books, :id, :title, prompt: I18n.t("comic.book_prompt")%>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">
           <%= form.label :tag_list, I18n.t("comic.tag_list") %>
         </div>
         <div class="form-input tag-cloud">
@@ -92,7 +101,6 @@
     </div>
   <% end %>
 </div>
-
 
 <script>
     const known_tags = ['<%= @known_tags.join("', '").html_safe %>'];

@@ -22,7 +22,7 @@
           <%= render 'shared/messages' %>
           <%= yield %>
         </div>
-        <div class="right-side"><%= content_for?(:right_side) ? yield(:right_side) : "" %></div>
+        <%= content_for?(:right_side) ? yield(:right_side) : "" %>
       </main>
       <footer class="page-footer">
         ComicBook - web comic manager

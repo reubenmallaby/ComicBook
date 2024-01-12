@@ -44,7 +44,7 @@
       box-sizing: border-box;
       border: 1px solid #730E15;
 
-      .comic {
+      .comic, .book {
         .comic-header {
           border-color: #730E15;
         }
@@ -98,8 +98,8 @@
       .overview {
         border: 1px solid #730E15;
 
-        .comics {
-          .comic {
+        .comics, .books {
+          .comic, .book {
             .link {
               color: #000000;
               background-color: #FFFFFF;
@@ -193,8 +193,8 @@
         color: #730E15 !important;
       }
 
-      .years, .months, .comics {
-        .year, .month, .comic {
+      .years, .months, .comics, .books {
+        .year, .month, .comic, .book {
           a, a:link, a:active, a:visited {
             &.current {
               background-color: #730E15 !important;

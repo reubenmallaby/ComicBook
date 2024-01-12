@@ -1,0 +1,33 @@
+<div class="form-outer">
+  <%= form_with model: [:manage, @book], class: 'form' do |form| %>
+    <div class="form-content">
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :title, I18n.t("book.title") %>
+        </div>
+        <div class="form-input">
+          <%= form.text_field :title, placeholder: I18n.t("comic.title_placeholder"), class: "form-text" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">
+          <%= form.label :description, I18n.t("book.description") %>
+        </div>
+        <div class="form-input">
+          <%= form.text_area :description, placeholder: I18n.t("comic.description_placeholder"), class: "form-text" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <div class="action form-cancel">
+        <%= link_to :back do %>
+          <i class='fa fa-chevron-left' aria-hidden='true'></i> <%= I18n.t("back") %>
+        <% end %>
+      </div>
+      <div class="spacer"></div>
+      <div class="action submit"><%= manager_button(form, text: 'update', icon: 'chevron-right', dir: 'left') %></div>
+    </div>
+  <% end %>
+</div>
