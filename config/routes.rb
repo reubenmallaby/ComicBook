@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'comics/:year'            => "comics#for_year",  as: :comics_for_year
   get 'comics/:year/:month'     => "comics#for_month", as: :comics_for_month
   get "comic/:year/:month/:day" => "comics#show",      as: :comic
+  post "comic/:id/comment"      => "comics#comment",   as: :comic_comments
 
   resources :books, only: [:index, :show]
 

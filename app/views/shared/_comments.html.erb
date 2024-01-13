@@ -1,0 +1,16 @@
+<div class="comments-container">
+  <div class="comments-title">
+    <%= I18n.t("comments.title") %>
+    <div class="comment-add-right" id="comment_add">
+      <i class="fa-solid fa-comment-medical" title="<%= I18n.t("comments.add") %>"></i>
+    </div>
+  </div>
+
+  <div class="comments">
+    <% resource.comments.each do |comment| %>
+      <%= render "shared/comment", comment: comment, css: cycle('comment-1', 'comment-2') %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'shared/comment_form', resource: resource %>

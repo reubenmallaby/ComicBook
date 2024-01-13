@@ -1,14 +1,14 @@
 <div class="comic">
   <div class="comic-header">
-    <div class="comic-title"><%= @comic.title %></div>
-    <div class="comic-date"><%= @comic.publish_date.strftime("%B %d %Y") %></div>
+    <div class="comic-title"><%= comic.title %></div>
+    <div class="comic-date"><%= comic.publish_date.strftime("%B %d %Y") %></div>
   </div>
 
   <div class="comic-image">
-    <%= image_tag @comic.image, alt: @comic.title, title: @comic.title %>
+    <%= image_tag comic.image, alt: comic.title, title: comic.title %>
   </div>
   <div class="comic-description">
-    <%= @comic.description %>
+    <%= comic.description %>
   </div>
 
   <div class="comic-nav">
@@ -19,3 +19,5 @@
     <%= link_for_comic(@latest, "latest") %>
   </div>
 </div>
+
+<%= render 'shared/comments', resource: comic %>

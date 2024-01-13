@@ -3,6 +3,7 @@ class Comic < ApplicationRecord
 
   has_one_attached :image
   belongs_to :book
+  has_many :comments, -> { order(created_at: :desc) }, as: :commentable
 
   validates :title, presence: true
   validates :description, presence: true
@@ -41,7 +42,7 @@ class Comic < ApplicationRecord
     return nil if date.blank?
     begin
       Comic.where(publish_date: date, is_published: true).first
-    rescue 
+    rescue
       nil #404
     end
   end

@@ -66,13 +66,13 @@ module ComicHelper
   end
 
   def manager_button(form, text: 'default', icon: 'exclamation', dir: :right)
-    text = (dir == :right) ?
+    btn_text = (dir == :right) ?
              "<i class='fa fa-#{icon}' aria-hidden='true'></i> #{I18n.t(text)}".html_safe
              :
              "#{I18n.t(text)} <i class='fa fa-#{icon}' aria-hidden='true'></i>".html_safe
-    form.button text,
+    form.button btn_text,
                 class: "button",
-                id: "#{text}-button"
+                id: "#{text}_button"
   end
 
   def form_comic_image(comic)

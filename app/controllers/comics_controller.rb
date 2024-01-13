@@ -69,4 +69,25 @@ class ComicsController < ApplicationController
     @comics = Comic.tagged_with(@tag).order(publish_date: :desc).limit(10)
     @max_count = Comic.tagged_with(@tag).count
   end
+
+  def comment
+    @comic = Comic.find params[:id]
+    @comment = @comic.comments.build comment_params
+    @comment.user = current_user
+    if @comment.save
+      respond_to do |format|
+        format.html do
+          d = @comic.publish_date
+          redirect_to comic_path(d.year, d.month, d.day)
+        end
+        format.js { render partial: 'shared/comment' }
+      end
+    end
+
+  end
+
+  private
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 end

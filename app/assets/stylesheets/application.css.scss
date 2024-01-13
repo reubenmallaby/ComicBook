@@ -1,3 +1,11 @@
+/* colors */
+$color-blue: #3377FF;
+$color-blue-light: #99bbff;
+$color-white: #FFF;
+$color-black: #000;
+$color-green: #468847;
+
+/* styling */
 html {
   line-height: 1.15;
 }
@@ -185,7 +193,7 @@ template {
   margin: 0;
 
   main {
-    background-color: #fff;
+    background-color: $color-white;
     display: flex;
     flex-grow: 1;
     flex-direction: row;
@@ -200,7 +208,8 @@ template {
       display: flex;
       flex-direction: column;
       width: 200px;
-      border: 1px solid #3377FF;
+      min-width: 200px;
+      border: 1px solid $color-blue;
       margin: 10px 0 10px 10px;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -210,14 +219,14 @@ template {
         flex-direction: column;
         padding: 0;
         box-sizing: border-box;
-        border-bottom: 1px solid #3377FF;
+        border-bottom: 1px solid $color-blue;
         margin-bottom: 10px;
 
         .title {
           font-weight: 600;
           text-align: center;
           width: 100%;
-          color: #3377FF;
+          color: $color-blue;
           height: 30px;
           font-size: 22px;
           padding: 4px;
@@ -245,25 +254,25 @@ template {
               flex-direction: row;
               width: 100%;
               justify-content: space-between;
-              color: #000000;
+              color: $color-black;
               border: 1px solid transparent;
               box-sizing: border-box;
               padding: 4px 10px;
 
               &.current {
-                color: #FFFFFF;
-                background-color: #3377FF;
+                color: $color-white;
+                background-color: $color-blue;
                 font-weight: 600;
                 cursor: default;
 
                 &:hover {
-                  color: #FFFFFF;
-                  background-color: #3377FF;
+                  color: $color-white;
+                  background-color: $color-blue;
                 }
               }
 
               &.single:hover {
-                color: #3377FF;
+                color: $color-blue;
                 font-weight: 600;
               }
             }
@@ -310,7 +319,7 @@ template {
           flex-direction: column;
           justify-content: flex-start;
           width: 100%;
-          background-color: #FFF;
+          background-color: $color-white;
           border-bottom: 1px solid #37F;
           margin-bottom: 0;
 
@@ -394,7 +403,7 @@ template {
 
           &:hover {
             background-color: #37F;
-            color: #FFF;
+            color: $color-white;
           }
         }
       }
@@ -405,9 +414,9 @@ template {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        border: 1px solid #3377FF;
+        border: 1px solid $color-blue;
         box-sizing: border-box;
-        background-color: #FFFFFF;
+        background-color: $color-white;
 
         .comics, .books {
           display: flex;
@@ -434,13 +443,13 @@ template {
               border: 0;
               height: 32px;
               line-height: 24px;
-              color: #000000;
-              background-color: #FFFFFF;
+              color: $color-black;
+              background-color: $color-white;
               text-decoration: none;
 
               &:hover {
-                background-color: #3377FF;
-                color: #FFFFFF;
+                background-color: $color-blue;
+                color: $color-white;
               }
 
               .date {
@@ -470,8 +479,16 @@ template {
       display: flex;
       flex-direction: column;
       width: 200px;
-      border: 1px solid #ccc;
+      border: 1px solid $color-blue;
       margin: 10px 10px 10px 0;
+
+      .title {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        margin: 10px 0;
+        box-sizing: border-box;
+      }
     }
   }
 
@@ -499,7 +516,7 @@ template {
       >div, >a {
         display: inline-block;
         margin: 0 10px;
-        color: #000000;
+        color: $color-black;
         text-decoration: none;
         box-sizing: border-box;
 
@@ -522,13 +539,13 @@ template {
 
           &:hover .dropdown-content {
             display: block;
-            border-left: 1px solid #3377FF;
-            border-bottom: 1px solid #3377FF;
-            border-right: 1px solid #3377FF;
+            border-left: 1px solid $color-blue;
+            border-bottom: 1px solid $color-blue;
+            border-right: 1px solid $color-blue;
           }
           &:hover .dropdown-button {
-            background-color: #3377FF;
-            color: #FFFFFF;
+            background-color: $color-blue;
+            color: $color-white;
           }
 
           .dropdown-button {
@@ -556,7 +573,7 @@ template {
               text-align: left;
               border: 0;
               text-decoration: none;
-              color: #000000;
+              color: $color-black;
               font-size: 16px;
               line-height: 32px;
               padding: 5px 10px;
@@ -606,16 +623,16 @@ template {
       margin-right: 5px;
       border-radius: 5px;
       text-decoration: none;
-      color: #000000;
+      color: $color-black;
 
       &:hover {
-        background-color: #3377FF;
+        background-color: $color-blue;
         color: #FFFFFF !important;
       }
 
       &.tag1 { font-size: 12px; color: #777777; }
       &.tag2 { font-size: 14px; }
-      &.tag3 { font-size: 16px; color: #3377FF; }
+      &.tag3 { font-size: 16px; color: $color-blue; }
       &.tag4 { font-size: 20px; color: #730E15; }
     }
   }
@@ -648,6 +665,98 @@ template {
     .error {
       color: #730E15;
     }
+  }
+}
+
+.comments-container {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-top: 1px solid $color-blue;
+  display: flex;
+  flex-direction: column;
+
+  .comments-title {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    box-sizing: border-box;
+
+    .comment-add-right {
+      float: right;
+      color: $color-black;
+      font-size: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-green;
+      }
+    }
+  }
+
+  .comments {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+    border-top: 1px solid $color-blue;
+    margin: 0;
+    padding: 10px;
+
+    .comment {
+      width: 100%;
+      margin: 5px 0;
+      padding: 5px 10px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      font-size: 14px;
+      cursor: default;
+
+      .comment_user, .comment_date {
+        display: flex;
+        width: 45%;
+        padding: 5px 0;
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .comment_date {
+        text-align: right;
+        font-weight: 500;
+      }
+      .comment_body {
+        width: 100%;
+      }
+
+      &.comment-1 { background-color: $color-white; }
+      &.comment-2 { background-color: #CCCCCC; }
+
+      &:hover {
+        background-color: $color-blue-light;
+        color: #0044cc;
+      }
+    }
+}
+}
+
+.comment-submit {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  button {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid #777777;
+    text-align: left;
+    justify-content: space-between;
   }
 }
 
@@ -698,7 +807,7 @@ template {
 .flash_notice {
   background-color: #dff0d8;
   border-color: #d6e9c6;
-  color: #468847;
+  color: $color-green;;
 }
 
 .flash_alert {
@@ -723,3 +832,4 @@ template {
  *= require_self
  */
 @import "font-awesome";
+@import 'actiontext.css';

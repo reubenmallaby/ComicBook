@@ -1,0 +1,8 @@
+<div class="comment <%= css %>">
+  <div class="comment_date">
+    <%= comment.created_at.to_formatted_s(:long_ordinal) %> : <%= comment.user.name %>
+  </div>
+  <div class="comment_body">
+    <%= comment.body %>
+  </div>
+</div>

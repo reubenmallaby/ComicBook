@@ -1,0 +1,39 @@
+<dialog id="comment_dialog">
+  <div class="comment-form">
+    <div class="form-outer">
+      <%= form_with model: [resource, resource.comments.build], class: "form" do |f| %>
+        <div class="form-content">
+
+          <div class="form-row">
+            <div class="form-input">
+              <%= f.rich_text_area :body %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="comment-submit">
+              <%= button_tag :submit, class: "button", id: "add_comment_button" do %>
+                <%= I18n.t("comments.reply") %><i class='fa-solid fa-reply' aria-hidden='true'></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</dialog>
+
+<script>
+    const dialog = document.querySelector("#comment_dialog");
+    const showCommentButton = document.querySelector("#comment_add");
+    const closeButton = document.querySelector("#add_comment_button");
+
+    showCommentButton.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    });
+</script>

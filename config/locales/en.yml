@@ -89,6 +89,11 @@ en:
     add_tag: "Add tag"
     add_tag_help: "Type tag name and press space"
 
+  comments:
+    title: "Comments"
+    reply: "Reply"
+    add: "Add comment"
+
   devise:
     sign_in:
       title: "Log in"
